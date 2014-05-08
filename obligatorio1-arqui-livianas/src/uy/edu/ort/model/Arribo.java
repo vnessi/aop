@@ -2,17 +2,29 @@ package uy.edu.ort.model;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Victor Nessi - Bruno Montaner
  */
-public class Arribo {
+@Entity
+public class Arribo extends EntidadPersistente{
     
+    @Column
     private String origen;
+    @Column
     private Date fecha;
+    @Column
     private String descripcion;
+    @Column
     private Barco barco;
+    
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private List<Contenedor> contenedores;
 
     /**

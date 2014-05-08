@@ -1,16 +1,26 @@
 package uy.edu.ort.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 /**
  *
  * @author Victor Nessi - Bruno Montaner
  */
-public class Barco {
+@Entity
+public class Barco extends EntidadPersistente{
     
+    @Column
     private String codigo;
+    @Column
     private String nombre;
+    @Column
     private String bandera;
+    @Column
     private int capacidadTransporte;
+    @Column
     private int anioFabricacion;
+    @Column
     private int cantidadTripulantes;
 
     public Barco() {

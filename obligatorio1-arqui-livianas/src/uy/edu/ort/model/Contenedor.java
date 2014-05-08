@@ -1,14 +1,22 @@
 package uy.edu.ort.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+
 /**
  *
  * @author Victor Nessi - Bruno Montaner
  */
-public class Contenedor {
+@Entity
+public class Contenedor extends EntidadPersistente {
     
+    @Column
     private String codigo;
+    @Column
     private String marca;
+    @Column
     private String modelo;
+    @Column
     private int capacidad;
 
     public Contenedor() {

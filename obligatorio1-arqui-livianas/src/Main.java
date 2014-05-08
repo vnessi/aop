@@ -1,14 +1,19 @@
-package uy.edu.ort;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import uy.edu.ort.dao.BarcoDao;
 import uy.edu.ort.dao.impl.BarcoDaoImpl;
 import uy.edu.ort.model.Barco;
-import uy.edu.ort.service.BusinessService;
 
-public class MainAfter {
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
+/**
+ *
+ * @author viti
+ */
+public class Main {
     public static void main(String[] args) {
         /*ApplicationContext applicationContext = new ClassPathXmlApplicationContext("resources/application-context-after.xml");
         BusinessService businessService = (BusinessService) applicationContext.getBean("businessService");

@@ -9,6 +9,6 @@
     <property name="hibernate.connection.password">root</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.show_sql">true</property>
-    <mapping class="uy.edu.ort.model.User"/>
+    <mapping class="uy.edu.ort.model.Barco"/>
   </session-factory>
 </hibernate-configuration>

@@ -18,17 +18,20 @@ public class BarcoDaoImpl implements BarcoDao{
 
     @Override
     public void agregarBarco(Barco barco) {
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        /*SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-
+*/
         
-
+        Session session = HibernateUtil.iniciarTransaccion();
+        
         session.save(barco);
 
-        transaction.commit();
-        session.close();
+        HibernateUtil.cerrarTransaccion();
+        
+        /*transaction.commit();
+        session.close();*/
     }
 
     @Override

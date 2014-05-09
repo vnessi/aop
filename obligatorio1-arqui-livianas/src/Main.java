@@ -21,7 +21,7 @@ public class Main {
         System.out.println(str);*/
         
         BarcoDao b = new BarcoDaoImpl();
-        Barco ba = new Barco("1", "nombre", "Peru", 100, 2014, 10);
+        Barco ba = new Barco("2", "nombre", "Peru", 100, 2014, 10);
         b.agregarBarco(ba);
     }
 }

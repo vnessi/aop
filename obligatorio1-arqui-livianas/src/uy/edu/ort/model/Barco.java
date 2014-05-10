@@ -2,20 +2,13 @@ package uy.edu.ort.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  *
  * @author Victor Nessi - Bruno Montaner
  */
 @Entity
-public class Barco {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class Barco extends EntidadPersistente{
     
     @Column
     private String codigo;

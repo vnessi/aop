@@ -1,4 +1,4 @@
-package uy.edu.ort.util;
+package uy.edu.ort.dao.hibernate;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,8 +37,11 @@ public class HibernateUtil {
     
     }
     
-    public static void cerrarTransaccion(){
+    public static void comitearTransaccion(){
         transaction.commit();
+    }
+    
+    public static void cerrarTransaccion(){
         session.close();
     }
 }

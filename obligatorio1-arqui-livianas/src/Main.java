@@ -1,6 +1,10 @@
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import uy.edu.ort.dao.BarcoDao;
-import uy.edu.ort.dao.impl.BarcoDaoImpl;
+import uy.edu.ort.dao.hibernate.BarcoDaoImpl;
+import uy.edu.ort.exception.GenericException;
 import uy.edu.ort.model.Barco;
 
 /*
@@ -15,13 +19,15 @@ import uy.edu.ort.model.Barco;
  */
 public class Main {
     public static void main(String[] args) {
-        /*ApplicationContext applicationContext = new ClassPathXmlApplicationContext("resources/application-context-after.xml");
-        BusinessService businessService = (BusinessService) applicationContext.getBean("businessService");
-        String str = businessService.serviceMethod(123);
-        System.out.println(str);*/
-        
-        BarcoDao b = new BarcoDaoImpl();
-        Barco ba = new Barco("2", "nombre", "Peru", 100, 2014, 10);
-        b.agregarBarco(ba);
+        try {
+            BarcoDao bdao = new BarcoDaoImpl();
+            System.out.print(bdao.obtenerTodos());
+        } catch (GenericException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private static void s() throws GenericException{
+        throw new GenericException("<< Exception >>>>>>>>>>>>>>>>");
     }
 }

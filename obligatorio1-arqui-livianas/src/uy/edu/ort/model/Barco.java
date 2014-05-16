@@ -21,7 +21,7 @@ public class Barco extends EntidadPersistente{
     @Column
     private int anioFabricacion;
     @Column
-    private int cantidadTripulantes;
+    private int cantidadTripulantes;    
 
     public Barco() {
     }

@@ -24,6 +24,10 @@ public interface ObjetoDao <T> {
      * @param entity
      * @throws uy.edu.ort.exception.GenericException
      */
+    
+    
+    void modificar(T entity) throws GenericException;
+    
     void borrar(T entity) throws GenericException;
 	/**
      *

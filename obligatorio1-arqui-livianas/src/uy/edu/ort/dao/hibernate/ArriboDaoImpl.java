@@ -1,5 +1,6 @@
 package uy.edu.ort.dao.hibernate;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,9 +21,12 @@ public class ArriboDaoImpl extends ObjectDaoImpl<Arribo> implements ArriboDao {
     @Override
     public List<Contenedor> getContenedoresDeArribosFecha(Date d) throws DaoException {
         try {
-            List<Contenedor> c = hibernateTemplate.find("select contenedor "
-                    + "from Arribo as a "
-                    + "inner join a.Contenedor as contenedor where a.fecha =" + d);
+//            select u from User u left join fetch u.cars where u.id = :id;
+            
+            SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy");
+            List<Contenedor> c = hibernateTemplate.find("select a "
+                    + "from Arribo a "
+                    + "left join a.contenedores as cont where a.fecha =" + dt1.format(d));
             if (c != null) {
                 return c;
             }

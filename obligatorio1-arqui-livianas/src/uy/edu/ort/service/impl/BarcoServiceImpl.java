@@ -61,7 +61,7 @@ public class BarcoServiceImpl implements BarcoService {
                     "arribo a puerto ese día.");
                 }
             }
-            barcoDao.guardar(barco);
+            barcoDao.modificar(barco);
         } catch (GenericException ex) {
             Logger.getLogger(BarcoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             throw new BussinesException("Error al acceder la Base de Datos");

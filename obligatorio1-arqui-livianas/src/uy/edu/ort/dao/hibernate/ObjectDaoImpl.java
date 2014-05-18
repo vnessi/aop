@@ -8,6 +8,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 import javax.persistence.Entity;
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import uy.edu.ort.dao.ObjetoDao;
 import uy.edu.ort.exception.GenericException;
@@ -37,6 +38,15 @@ public class ObjectDaoImpl<T> implements ObjetoDao<T> {
     public void guardar(T entity) {
         hibernateTemplate.save(entity);
     }
+    
+    @Override
+    public void modificar(T entity) throws GenericException{
+        try{
+        hibernateTemplate.merge(entity);
+        }catch(DataAccessException ex){
+            throw new GenericException(ex.getMessage());
+        }
+    }
 
     @Override
     public void borrar(T entity) {
@@ -55,7 +65,7 @@ public class ObjectDaoImpl<T> implements ObjetoDao<T> {
 
     @Override
     public List<T> obtenerPorPropiedad(String prop, Object val) throws GenericException {
-        return hibernateTemplate.find("from "+getEntityName()+" where "+prop+" = "+val);
+        return hibernateTemplate.find("from "+getEntityName()+" as T where T."+prop+" = \'"+val+"\'");
     }
     
     public String getEntityName() {

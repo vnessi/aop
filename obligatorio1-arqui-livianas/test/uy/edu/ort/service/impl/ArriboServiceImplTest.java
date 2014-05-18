@@ -12,6 +12,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import uy.edu.ort.model.Arribo;
 import uy.edu.ort.model.Barco;
 import uy.edu.ort.model.Contenedor;
 import uy.edu.ort.service.ArriboService;
@@ -27,7 +28,6 @@ public class ArriboServiceImplTest {
     }
     public static BarcoService barcoService;
     public static ArriboService instance;
-    public static List<Object> objectosABorrar = new ArrayList<Object>();
 
     @BeforeClass
     public static void setUpClass() {
@@ -72,6 +72,7 @@ public class ArriboServiceImplTest {
 
         contLst.add(c);
         instance.registrarArribo(b, contLst, descripcion, origen);
+        
     }
 
     /**
@@ -79,14 +80,10 @@ public class ArriboServiceImplTest {
      */
     @Test
     public void testGenerarReporteArribosMes() throws Exception {
-        System.out.println("generarReporteArribosMes");
-        int mes = 0;
-        ArriboServiceImpl instance = new ArriboServiceImpl();
-        List expResult = null;
-        List result = instance.generarReporteArribosMes(mes);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      System.out.println("generarReporteArribosMes");
+        int mes = 5;
+        List<Arribo> arribos = instance.generarReporteArribosMes(mes);
+        assertEquals(arribos.size(), 12);
     }
 
     /**
@@ -95,13 +92,9 @@ public class ArriboServiceImplTest {
     @Test
     public void testGenerarReporteArribosMesBarco() throws Exception {
         System.out.println("generarReporteArribosMesBarco");
-        int mes = 0;
+        int mes = 4;
         String codigoBarco = "";
-        ArriboServiceImpl instance = new ArriboServiceImpl();
-        List expResult = null;
-        List result = instance.generarReporteArribosMesBarco(mes, codigoBarco);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<Arribo> arribos = instance.generarReporteArribosMesBarco(mes, "123");
+        assertEquals(arribos.size(), 0);
     }
 }

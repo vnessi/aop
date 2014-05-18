@@ -51,7 +51,7 @@ public class BarcoServiceImplTest {
         assertEquals(b.getBandera(), "MEXICO");
         assertEquals(barcosBeforeCount+1, instance.listBarcos().size());
        
-        instance.removeBarco(b);
+        instance.removeBarco(b.getCodigo());
         assertEquals(barcosBeforeCount, instance.listBarcos().size());
     }
 /**

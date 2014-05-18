@@ -41,8 +41,9 @@ public class BarcoServiceImpl implements BarcoService {
 
     @Transactional
     @Override
-    public void removeBarco(Barco barco) throws BussinesException {
+    public void removeBarco(String codigo) throws BussinesException {
         try {
+            Barco barco = barcoDao.obtenerPorPropiedad("codigo", codigo).get(0);
             barcoDao.borrar(barco);
         } catch (GenericException ex) {
             Logger.getLogger(BarcoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,6 +74,16 @@ public class BarcoServiceImpl implements BarcoService {
     public List<Barco> listBarcos() throws BussinesException {
         try {
             return barcoDao.obtenerTodos();
+        } catch (GenericException ex) {
+            Logger.getLogger(BarcoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BussinesException("Error al acceder la Base de Datos");
+        }
+    }
+
+    @Override
+    public Barco obtenerBarco(String codigo) throws BussinesException {
+        try {
+            return barcoDao.obtenerPorPropiedad("codigo", codigo).get(0);
         } catch (GenericException ex) {
             Logger.getLogger(BarcoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             throw new BussinesException("Error al acceder la Base de Datos");

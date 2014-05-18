@@ -1,5 +1,6 @@
 package uy.edu.ort.model;
 
+import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ import javax.persistence.Version;
  * a las entidades que se van a persistir.
  */
 @MappedSuperclass
-public class EntidadPersistente {
+public class EntidadPersistente implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

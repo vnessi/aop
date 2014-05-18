@@ -21,8 +21,6 @@ public class ArriboDaoImpl extends ObjectDaoImpl<Arribo> implements ArriboDao {
     @Override
     public List<Contenedor> getContenedoresDeArribosFecha(Date d) throws DaoException {
         try {
-//            select u from User u left join fetch u.cars where u.id = :id;
-            
             SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy");
             List<Contenedor> c = hibernateTemplate.find("select a "
                     + "from Arribo a "
@@ -55,21 +53,11 @@ public class ArriboDaoImpl extends ObjectDaoImpl<Arribo> implements ArriboDao {
     public Boolean getArriboBarcoHoy(String codigoBarco) throws DaoException {
         List<Arribo> resultado;
         try {
-            Session session = HibernateUtil.iniciarTransaccion();
-            String consulta = "from Arribo where fecha = :val";
-
-            if (codigoBarco != null) {
-                consulta += " AND barco.id = :codBarco";
-            }
-
-            Query query = session.createQuery(consulta);
-            query.setParameter("val", new Date());
-            query.setParameter("codBarco", codigoBarco);
-            resultado = query.list();
-        } catch (HibernateException he) {
+             SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy");
+              
+            resultado = hibernateTemplate.find("from Arribo where fecha ="+dt1.format(new Date()) +" and barco.codigo="+codigoBarco);
+        } catch (Exception he) {
             throw new DaoException(he.getMessage());
-        } finally {
-            HibernateUtil.cerrarTransaccion();
         }
         return !resultado.isEmpty();
     }

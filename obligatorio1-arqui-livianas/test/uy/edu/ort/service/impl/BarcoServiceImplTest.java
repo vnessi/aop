@@ -68,5 +68,17 @@ public class BarcoServiceImplTest {
         Barco barco0Modi = instance.listBarcos().get(0);
         assertEquals(barco0Modi.getBandera(),bandera+" Test");
     }
+    
+     @Test
+    public void testObtenerBarco() throws Exception {
+        System.out.println("ObtenerBarco");
+        Barco b = getBarco();
+        b.setCodigo("UNCODE");
+        instance.addBarco(b);
+        Barco barco0 = instance.obtenerBarco(b.getCodigo());
+        assertEquals(barco0.getId(), b.getId());
+                
+        
+    }
      
 }

@@ -10,9 +10,11 @@ import uy.edu.ort.model.Barco;
  */
 public interface BarcoService {
     
-    public void addBarco(Barco barco);
+    public void addBarco(Barco barco) throws BussinesException;
 
-    public void removeBarco(Barco barco);
+    public void removeBarco(Barco barco) throws BussinesException;
+    
+    public void modifyBarco(Barco barco) throws BussinesException;    
 
-    public List<Barco> listBarcos();
+    public List<Barco> listBarcos() throws BussinesException;
 }

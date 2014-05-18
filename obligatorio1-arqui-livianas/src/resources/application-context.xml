@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
+     <tx:annotation-driven transaction-manager="transactionManager"/>    
+    
+    <bean id="arriboService" class="uy.edu.ort.service.ArriboServiceImpl" >
+        <property name="arriboDao" ref="arriboDao"/>
+    </bean>
+    
+    <bean id="barcoService" class="uy.edu.ort.service.BarcoServiceImpl" >
+        <property name="arriboDao" ref="arriboDao"/>
+        <property name="barcoDao" ref="barcoDao"/>
+    </bean>
+    
+    <bean id="contenedorService" class="uy.edu.ort.service.ContenedorServiceImpl" >
+        <property name="contenedorDao" ref="contenedorDao"/>
+    </bean>
+    
+    <bean id="arriboDao" class="uy.edu.ort.dao.hibernate.ArriboDaoImpl">
+    </bean>
+    
+   
+    
+    <bean id="contenedorDao" class="uy.edu.ort.dao.hibernate.ContenedorDaoImpl">
+    </bean>
 
-
+    <bean id="myBeanPostProcessor" class="uy.edu.ort.beanWiring.MyBeanPostProcessor"></bean>
+    
+    <!-- Hibernate Template -->
+     <bean id="transactionManager"
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="hibernateTemplate"  class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+    </bean>
+     <bean id="barcoDao" class="uy.edu.ort.dao.hibernate.BarcoDaoImpl">
+         <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
 </beans>

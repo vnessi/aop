@@ -1,5 +1,6 @@
 package uy.edu.ort.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
@@ -8,7 +9,7 @@ import javax.persistence.Entity;
  * @author Victor Nessi - Bruno Montaner
  */
 @Entity
-public class Contenedor extends EntidadPersistente {
+public class Contenedor extends EntidadPersistente implements Serializable {
     
     @Column
     private String codigo;

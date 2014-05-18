@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import uy.edu.ort.dao.BarcoDao;
 import uy.edu.ort.dao.DaoException;
 import uy.edu.ort.model.Barco;
@@ -15,19 +16,19 @@ import uy.edu.ort.model.Barco;
  */
 public class BarcoDaoImpl implements BarcoDao{
 
+    private HibernateTemplate hibernateTemplate;
+    
+     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        this.hibernateTemplate = hibernateTemplate;
+    }
+    
     @Override
     public void guardar(Barco entity) throws DaoException {
         try{
-            Session session = HibernateUtil.iniciarTransaccion();
-
-            session.save(entity);
-
-            HibernateUtil.comitearTransaccion();
+            hibernateTemplate.save(entity);
         } catch (HibernateException ex) {
             throw new DaoException(ex.getMessage());
-        } finally {
-            HibernateUtil.cerrarTransaccion();
-        }   
+        }
     }
 
     @Override

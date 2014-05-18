@@ -2,6 +2,8 @@ package uy.edu.ort.service;
 
 public class BusinessServiceImpl implements BusinessService {
 
+   
+    
     @Override
     public void serviceMethod(String arg) {
         System.out.println("service " + arg);
@@ -13,4 +15,7 @@ public class BusinessServiceImpl implements BusinessService {
         String str = "=> {" + number+"}";
         return str;
     }
+
+    
+
 }

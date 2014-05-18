@@ -1,14 +1,16 @@
 package uy.edu.ort.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Victor Nessi - Bruno Montaner
  */
 @Entity
-public class Barco extends EntidadPersistente{
+public class Barco extends EntidadPersistente implements Serializable{
     
     @Column
     private String codigo;

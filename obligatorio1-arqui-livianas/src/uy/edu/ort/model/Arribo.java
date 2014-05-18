@@ -1,6 +1,5 @@
 package uy.edu.ort.model;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -10,23 +9,22 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author Victor Nessi - Bruno Montaner
  */
 @Entity
-public class Arribo extends EntidadPersistente implements Serializable{
+public class Arribo extends EntidadPersistente{
     
     @Column
     private String origen;
-    @Column
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     @Column
     private String descripcion;
-    
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Barco barco;
     
     @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)

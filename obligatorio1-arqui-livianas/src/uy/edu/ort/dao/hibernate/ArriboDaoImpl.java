@@ -40,11 +40,11 @@ public class ArriboDaoImpl extends ObjectDaoImpl<Arribo> implements ArriboDao {
     }
 
     @Override
-    public List<Arribo> getArribosEnMes(int mes, String codigoBarco) throws DaoException {
-        String queryString = "from Arribo where MONTH(fecha) = " + mes;
+    public List<Arribo> getArribosEnMes(int mes, String idBarco) throws DaoException {
+        String queryString = "from Arribo a where month(a.fecha) = " + mes;
 
-        if (codigoBarco != null) {
-            queryString += " AND barco.id =" + codigoBarco;
+        if (idBarco != null) {
+            queryString += " AND a.barco.id =" + idBarco;
         }
         return hibernateTemplate.find(queryString);
     }

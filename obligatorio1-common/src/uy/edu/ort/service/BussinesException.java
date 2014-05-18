@@ -10,7 +10,7 @@ package uy.edu.ort.service;
  */
 public class BussinesException extends Exception{
 
-    BussinesException(String message) {
+    public BussinesException(String message) {
         super(message);
     }
     

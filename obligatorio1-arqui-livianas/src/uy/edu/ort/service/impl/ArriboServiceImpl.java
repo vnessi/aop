@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package uy.edu.ort.service;
+package uy.edu.ort.service.impl;
 
 import java.util.Date;
 import java.util.List;
@@ -11,11 +11,12 @@ import java.util.logging.Logger;
 import org.springframework.transaction.annotation.Transactional;
 import uy.edu.ort.dao.ArriboDao;
 import uy.edu.ort.dao.DaoException;
-import uy.edu.ort.dao.hibernate.ArriboDaoImpl;
 import uy.edu.ort.exception.GenericException;
 import uy.edu.ort.model.Arribo;
 import uy.edu.ort.model.Barco;
 import uy.edu.ort.model.Contenedor;
+import uy.edu.ort.service.ArriboService;
+import uy.edu.ort.service.BussinesException;
 
 /**
  *

@@ -1,11 +1,5 @@
 package uy.edu.ort;
 
-import java.util.List;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import uy.edu.ort.model.User;
-//import uy.edu.ort.service.UserService;
-
 public class MainUserService {
 
     public static void main(String[] args) {

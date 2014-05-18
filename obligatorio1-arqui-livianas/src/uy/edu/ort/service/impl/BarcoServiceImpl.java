@@ -1,4 +1,4 @@
-package uy.edu.ort.service;
+package uy.edu.ort.service.impl;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -8,6 +8,8 @@ import uy.edu.ort.dao.ArriboDao;
 import uy.edu.ort.dao.BarcoDao;
 import uy.edu.ort.exception.GenericException;
 import uy.edu.ort.model.Barco;
+import uy.edu.ort.service.BarcoService;
+import uy.edu.ort.service.BussinesException;
 
 /**
  *

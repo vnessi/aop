@@ -11,16 +11,16 @@
 
      <tx:annotation-driven transaction-manager="transactionManager"/>    
     
-    <bean id="arriboService" class="uy.edu.ort.service.ArriboServiceImpl" >
+    <bean id="arriboService" class="uy.edu.ort.service.impl.ArriboServiceImpl" >
         <property name="arriboDao" ref="arriboDao"/>
     </bean>
     
-    <bean id="barcoService" class="uy.edu.ort.service.BarcoServiceImpl" >
+    <bean id="barcoService" class="uy.edu.ort.service.impl.BarcoServiceImpl" >
         <property name="arriboDao" ref="arriboDao"/>
         <property name="barcoDao" ref="barcoDao"/>
     </bean>
     
-    <bean id="contenedorService" class="uy.edu.ort.service.ContenedorServiceImpl" >
+    <bean id="contenedorService" class="uy.edu.ort.service.impl.ContenedorServiceImpl" >
         <property name="contenedorDao" ref="contenedorDao"/>
     </bean>
     

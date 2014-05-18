@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package uy.edu.ort.service;
+package uy.edu.ort.service.impl;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import uy.edu.ort.dao.ContenedorDao;
 import uy.edu.ort.exception.GenericException;
 import uy.edu.ort.model.Contenedor;
+import uy.edu.ort.service.BussinesException;
+import uy.edu.ort.service.ContenedorService;
 
 /**
  *

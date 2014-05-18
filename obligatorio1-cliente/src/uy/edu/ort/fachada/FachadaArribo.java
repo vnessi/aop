@@ -47,7 +47,7 @@ public class FachadaArribo {
                 listaContenedores.add(c);
 
             }
-            arriboDao.registrarArribo(b, listaContenedores, argsDatos[0], argsDatos[2], fechaArribo);
+            arriboDao.registrarArribo(b, listaContenedores, argsDatos[2], argsDatos[0], fechaArribo);
         } catch (BussinesException ex) {
             Logger.getLogger(FachadaArribo.class.getName()).log(Level.SEVERE, null, ex);
         }

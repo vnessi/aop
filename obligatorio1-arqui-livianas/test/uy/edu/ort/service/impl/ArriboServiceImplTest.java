@@ -5,6 +5,7 @@
 package uy.edu.ort.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.junit.After;
 import org.junit.BeforeClass;
@@ -71,7 +72,7 @@ public class ArriboServiceImplTest {
         c.setModelo("nice");
 
         contLst.add(c);
-        instance.registrarArribo(b, contLst, descripcion, origen);
+        instance.registrarArribo(b, contLst, descripcion, origen, new Date());
         
     }
 

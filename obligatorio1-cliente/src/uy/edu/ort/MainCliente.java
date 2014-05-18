@@ -9,6 +9,7 @@ import uy.edu.ort.fachada.FachadaBarco;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import uy.edu.ort.fachada.FachadaArribo;
 import uy.edu.ort.fachada.FachadaContenedor;
 
 /**
@@ -232,14 +233,31 @@ public class MainCliente {
                         System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
                     }
                     break;
-                    
-                case "exit":
+
+                case "9":
+                    System.out.println(">>Registrar Arribo: \n"
+                            + "\nIngrese los datos del arribo separados por coma "
+                            + "(Origen,Fecha(dd-MM-yyyy),Descripcion del contenido,Codigo de barco)\n");
+                    System.out.print(">> ");
+                    String datos = bufferedReader.readLine();
+                    System.out.println("\nIngrese el codigo de los contenedores separados por coma (c001,j001,5a0)\n");
+                    System.out.print(">> ");
+                    String contenedores = bufferedReader.readLine();
+                    try {
+                        if (checkArgs(datos) && checkArgs(contenedores)) {
+                            FachadaArribo.registrarArribos(datos, contenedores);
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
+
+                case "99":
                     System.out.println(">>Salir");
                     noSalir = false;
                     break;
                 default:
                     System.out.println("No existe comando!");
-                    printCommands();
                     break;
             }
         }
@@ -267,6 +285,8 @@ public class MainCliente {
         System.out.println(">> 6 -\tEliminar Contenedor");
         System.out.println(">> 7 -\tModificar Contenedor");
         System.out.println(">> 8 -\tListar Contenedores");
+        System.out.println(">> 9 -\tRegistrar arribo");
+        System.out.println(">> 99 -\tSalir del sistema");
     }
 
     private static Boolean checkArgs(String s) {

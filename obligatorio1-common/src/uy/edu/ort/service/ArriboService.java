@@ -4,6 +4,7 @@
  */
 package uy.edu.ort.service;
 
+import java.util.Date;
 import java.util.List;
 import uy.edu.ort.model.Arribo;
 import uy.edu.ort.model.Barco;
@@ -15,7 +16,7 @@ import uy.edu.ort.model.Contenedor;
  */
 public interface ArriboService {
 
-    public void registrarArribo(Barco b, List<Contenedor> contLst, String descripcion, String origen) throws BussinesException;
+    public void registrarArribo(Barco b, List<Contenedor> contLst, String descripcion, String origen, Date fechaArribo) throws BussinesException;
 
     public List<Arribo> generarReporteArribosMes(int mes) throws BussinesException;
 

@@ -62,7 +62,7 @@ public class Main {
             c.setModelo("nice");
             
             conts.add(c);
-            aservice.registrarArribo(b, conts, "Descriptioin ", "CHINA");
+            //aservice.registrarArribo(b, conts, "Descriptioin ", "CHINA");
             
             System.out.println(aservice.generarReporteArribosMes(5));
 //        aservice.registrarArribo(b, null, null, null);

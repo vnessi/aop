@@ -31,7 +31,7 @@ public class ArriboServiceImpl implements ArriboService {
     }
     @Transactional
     @Override
-    public void registrarArribo(Barco b, List<Contenedor> contLst, String descripcion, String origen) throws BussinesException {
+    public void registrarArribo(Barco b, List<Contenedor> contLst, String descripcion, String origen, Date fechaArribo) throws BussinesException {
         int pesoContenedores = 0;
 
         //Un Barco no puede arribar si transporta un cantidad mayor que su capacidad de transporte.
@@ -45,7 +45,7 @@ public class ArriboServiceImpl implements ArriboService {
         //Un Contenedor no puede arribar en diferentes barcos el mismo día.
         List<Contenedor> contInDB = null;
         try {
-            contInDB = arriboDAO.getContenedoresDeArribosFecha(new Date());
+            contInDB = arriboDAO.getContenedoresDeArribosFecha(fechaArribo);
         } catch (DaoException ex) {
             Logger.getLogger(ArriboServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             throw new BussinesException("Error al acceder la Base de Datos");
@@ -61,7 +61,7 @@ public class ArriboServiceImpl implements ArriboService {
         Arribo a = new Arribo();
         a.setBarco(b);
         a.setContenedores(contLst);
-        a.setFecha(new Date());
+        a.setFecha(fechaArribo);
         a.setOrigen(origen);
         a.setDescripcion(descripcion);
 

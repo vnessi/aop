@@ -27,7 +27,7 @@ public class Arribo extends EntidadPersistente implements Serializable{
     private Date fecha;
     @Column
     private String descripcion;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Barco barco;
     
     @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)

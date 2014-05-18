@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 public class Barco extends EntidadPersistente implements Serializable{
     
-    @Column
+    @Column(unique = true)
     private String codigo;
     @Column
     private String nombre;

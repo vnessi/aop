@@ -1,5 +1,6 @@
 package uy.edu.ort.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -15,8 +17,9 @@ import javax.persistence.TemporalType;
  *
  * @author Victor Nessi - Bruno Montaner
  */
+@Table(name="Arribo")
 @Entity
-public class Arribo extends EntidadPersistente{
+public class Arribo extends EntidadPersistente implements Serializable{
     
     @Column
     private String origen;

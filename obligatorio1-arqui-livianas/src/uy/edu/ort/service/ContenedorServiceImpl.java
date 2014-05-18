@@ -7,6 +7,7 @@ package uy.edu.ort.service;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.transaction.annotation.Transactional;
 import uy.edu.ort.dao.ContenedorDao;
 import uy.edu.ort.exception.GenericException;
 import uy.edu.ort.model.Contenedor;
@@ -22,7 +23,7 @@ public class ContenedorServiceImpl implements ContenedorService{
     public void setContenedorDao(ContenedorDao c) {
         this.contenedorDao = c;
     }
-
+    @Transactional
     @Override
     public void addContenedor(Contenedor contenedor) throws BussinesException {
         try {
@@ -32,7 +33,7 @@ public class ContenedorServiceImpl implements ContenedorService{
             throw new BussinesException("Error al acceder la Base de Datos");
         }
     }
-
+    @Transactional
     @Override
     public void removeContenedor(Contenedor contenedor) throws BussinesException {
         try {
@@ -42,7 +43,7 @@ public class ContenedorServiceImpl implements ContenedorService{
             throw new BussinesException("Error al acceder la Base de Datos");
         }
     }
-
+    @Transactional
     @Override
     public void modifyContenedor(Contenedor contenedor) throws BussinesException {
         try {
@@ -52,7 +53,7 @@ public class ContenedorServiceImpl implements ContenedorService{
             throw new BussinesException("Error al acceder la Base de Datos");
         }
     }
-
+    @Transactional
     @Override
     public List<Contenedor> listContenedors() throws BussinesException {
         try {

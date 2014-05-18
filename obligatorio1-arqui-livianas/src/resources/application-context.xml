@@ -25,11 +25,11 @@
     </bean>
     
     <bean id="arriboDao" class="uy.edu.ort.dao.hibernate.ArriboDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
     
-   
-    
     <bean id="contenedorDao" class="uy.edu.ort.dao.hibernate.ContenedorDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
 
     <bean id="myBeanPostProcessor" class="uy.edu.ort.beanWiring.MyBeanPostProcessor"></bean>

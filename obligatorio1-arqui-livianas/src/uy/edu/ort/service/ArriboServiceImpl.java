@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.transaction.annotation.Transactional;
 import uy.edu.ort.dao.ArriboDao;
 import uy.edu.ort.dao.DaoException;
 import uy.edu.ort.dao.hibernate.ArriboDaoImpl;
@@ -27,7 +28,7 @@ public class ArriboServiceImpl implements ArriboService {
     public void setArriboDao(ArriboDao a){
         this.arriboDAO = a;
     }
-
+    @Transactional
     @Override
     public void registrarArribo(Barco b, List<Contenedor> contLst, String descripcion, String origen) throws BussinesException {
         int pesoContenedores = 0;
@@ -58,7 +59,7 @@ public class ArriboServiceImpl implements ArriboService {
 
         Arribo a = new Arribo();
         a.setBarco(b);
-        a.setContenedores(contInDB);
+        a.setContenedores(contLst);
         a.setFecha(new Date());
         a.setOrigen(origen);
         a.setDescripcion(descripcion);
@@ -71,7 +72,7 @@ public class ArriboServiceImpl implements ArriboService {
         }
 
     }
-
+    @Transactional
     @Override
     public List<Arribo> generarReporteArribosMes(int mes) throws BussinesException {
         try {
@@ -83,7 +84,7 @@ public class ArriboServiceImpl implements ArriboService {
 
 
     }
-
+    @Transactional
     @Override
     public List<Arribo> generarReporteArribosMesBarco(int mes, String codigoBarco) throws BussinesException {
 

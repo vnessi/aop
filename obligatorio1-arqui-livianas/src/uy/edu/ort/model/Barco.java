@@ -9,6 +9,7 @@ import javax.persistence.Table;
  *
  * @author Victor Nessi - Bruno Montaner
  */
+@Table(name="Barco")
 @Entity
 public class Barco extends EntidadPersistente implements Serializable{
     

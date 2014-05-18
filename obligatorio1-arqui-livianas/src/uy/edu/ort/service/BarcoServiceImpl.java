@@ -3,6 +3,7 @@ package uy.edu.ort.service;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.transaction.annotation.Transactional;
 import uy.edu.ort.dao.ArriboDao;
 import uy.edu.ort.dao.BarcoDao;
 import uy.edu.ort.exception.GenericException;
@@ -25,6 +26,7 @@ public class BarcoServiceImpl implements BarcoService {
         this.arriboDao = a;
     }
     
+    @Transactional
     @Override
     public void addBarco(Barco barco) throws BussinesException {
         try {
@@ -35,6 +37,7 @@ public class BarcoServiceImpl implements BarcoService {
         }
     }
 
+    @Transactional
     @Override
     public void removeBarco(Barco barco) throws BussinesException {
         try {
@@ -45,11 +48,12 @@ public class BarcoServiceImpl implements BarcoService {
         }
     }
 
+    @Transactional
     @Override
     public void modifyBarco(Barco barco) throws BussinesException {
         try {
             Barco barcoBD = barcoDao.obtenerPorPK(barco);
-            if(barcoBD.getCapacidadTransporte() != barco.getCapacidadTransporte()){
+            if(barcoBD != null && barcoBD.getCapacidadTransporte() != barco.getCapacidadTransporte()){
                 if (!arriboDao.getArriboBarcoHoy(barco.getCodigo())) {
                     throw new BussinesException("No se puede modificar la Capacidad de transporte de un Barco, si no\n" +
                     "arribo a puerto ese día.");
@@ -62,6 +66,7 @@ public class BarcoServiceImpl implements BarcoService {
         }
     }
 
+    @Transactional
     @Override
     public List<Barco> listBarcos() throws BussinesException {
         try {

@@ -3,11 +3,13 @@ package uy.edu.ort.model;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  *
  * @author Victor Nessi - Bruno Montaner
  */
+@Table(name="Contenedor")
 @Entity
 public class Contenedor extends EntidadPersistente implements Serializable {
     

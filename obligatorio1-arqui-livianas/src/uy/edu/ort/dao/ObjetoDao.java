@@ -2,6 +2,7 @@ package uy.edu.ort.dao;
 
 import java.util.List;
 import uy.edu.ort.exception.GenericException;
+import uy.edu.ort.model.EntidadPersistente;
 
 /**
  *
@@ -30,7 +31,7 @@ public interface ObjetoDao <T> {
      * @return
      * @throws uy.edu.ort.exception.GenericException
      */
-    T obtenerPorPK(Object id) throws GenericException;
+    T obtenerPorPK(EntidadPersistente id) throws GenericException;
 	/**
      *
      * @return

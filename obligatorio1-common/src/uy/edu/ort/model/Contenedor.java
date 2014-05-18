@@ -11,7 +11,7 @@ import javax.persistence.Table;
  */
 @Table(name="Contenedor")
 @Entity
-public class Contenedor extends EntidadPersistente implements Serializable {
+public class Contenedor extends EntidadPersistente {
     
     @Column
     private String codigo;

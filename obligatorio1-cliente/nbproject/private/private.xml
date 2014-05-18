@@ -4,7 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/victor/Documents/Facultad/Java/repo/obligatorio1-cliente/src/uy/edu/ort/MainCliente.java</file>
-            <file>file:/Users/victor/Documents/Facultad/Java/repo/obligatorio1-cliente/src/resources/application-context.xml</file>
+            <file>file:/Users/victor/Documents/Facultad/Java/repo/obligatorio1-cliente/src/uy/edu/ort/fachada/FachadaBarco.java</file>
+            <file>file:/Users/victor/Documents/Facultad/Java/repo/obligatorio1-cliente/src/uy/edu/ort/fachada/FachadaContenedor.java</file>
         </group>
     </open-files>
 </project-private>

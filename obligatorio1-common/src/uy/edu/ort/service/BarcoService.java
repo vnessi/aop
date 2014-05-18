@@ -12,7 +12,7 @@ public interface BarcoService {
     
     public void addBarco(Barco barco) throws BussinesException;
 
-    public void removeBarco(String codigo) throws BussinesException;
+    public void removeBarco(Barco barco) throws BussinesException;
     
     public Barco obtenerBarco(String codigo) throws BussinesException;
     

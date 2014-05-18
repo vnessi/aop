@@ -5,9 +5,11 @@
  */
 package uy.edu.ort;
 
+import uy.edu.ort.fachada.FachadaBarco;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import uy.edu.ort.fachada.FachadaContenedor;
 
 /**
  *
@@ -88,7 +90,7 @@ public class MainCliente {
 //            conts.add(c);
 //            aservice.registrarArribo(b, conts, "Descriptioin ", "CHINA");
 
-            //System.out.println(aservice.generarReporteArribosMes(5));
+        //System.out.println(aservice.generarReporteArribosMes(5));
         //aservice.registrarArribo(b, null, null, null);
         //  BarcoDao bdao ;
         //System.out.print(bdao.obtenerTodos());*/
@@ -150,7 +152,7 @@ public class MainCliente {
                         if (checkArgs(codBarco)) {
                             FachadaBarco.mostrarBarco(codBarco);
                             System.out.println("\nIngrese los datos del barco separados por coma "
-                            + "(Codigo,Nombre,Bandera,Capacidad(kgs),Año,Cantidad Tripulantes)\n");
+                                    + "(Codigo,Nombre,Bandera,Capacidad(kgs),Año,Cantidad Tripulantes)\n");
                             System.out.print(">> ");
                             arg = bufferedReader.readLine();
                             if (checkArgs(arg)) {
@@ -161,7 +163,7 @@ public class MainCliente {
                         System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
                     }
                     break;
-                    
+
                 case "4":
                     System.out.println(">>Listar Barcos\n");
                     try {
@@ -171,6 +173,66 @@ public class MainCliente {
                     }
                     break;
 
+                case "5":
+                    System.out.println(">>Agregar Contenedor: "
+                            + "\nIngrese los datos del contenedor separados por coma "
+                            + "(Codigo,Marca,Modelo,Capacidad(kgs))\n");
+                    System.out.print(">> ");
+                    arg = bufferedReader.readLine();
+                    try {
+                        if (checkArgs(arg)) {
+                            FachadaContenedor.agregarContenedor(arg);
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
+                case "6":
+                    System.out.println(">>Eliminar Contenedor: \n");
+                    FachadaContenedor.listarContenedores();
+                    System.out.println(">>Ingrese el codigo del contenedor que desea eliminar: \n");
+                    System.out.print(">> ");
+                    arg = bufferedReader.readLine();
+                    try {
+                        if (checkArgs(arg)) {
+                            FachadaContenedor.eliminarContenedor(arg);
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
+
+                case "7":
+                    System.out.println(">>Modificar Contenedor: \n");
+                    FachadaContenedor.listarContenedores();
+                    System.out.println(">>Ingrese el codigo del contenedor que desea modificar: \n");
+                    System.out.print(">> ");
+                    String codContenedor = bufferedReader.readLine();
+                    try {
+                        if (checkArgs(codContenedor)) {
+                            FachadaContenedor.mostrarContenedor(codContenedor);
+                            System.out.println("\nIngrese los datos del contenedor separados por coma "
+                                    + "(Codigo,Marca,Modelo,Capacidad(kgs))\n");
+                            System.out.print(">> ");
+                            arg = bufferedReader.readLine();
+                            if (checkArgs(arg)) {
+                                FachadaContenedor.modificarContenedor(codContenedor, arg);
+                            }
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
+
+                case "8":
+                    System.out.println(">>Listar Contenedores\n");
+                    try {
+                        FachadaContenedor.listarContenedores();
+                    } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
+                    
                 case "exit":
                     System.out.println(">>Salir");
                     noSalir = false;
@@ -201,6 +263,10 @@ public class MainCliente {
         System.out.println(">> 2 -\tEliminar Barco");
         System.out.println(">> 3 -\tModificar Barco");
         System.out.println(">> 4 -\tListar Barcos");
+        System.out.println(">> 5 -\tAgregar Contenedor");
+        System.out.println(">> 6 -\tEliminar Contenedor");
+        System.out.println(">> 7 -\tModificar Contenedor");
+        System.out.println(">> 8 -\tListar Contenedores");
     }
 
     private static Boolean checkArgs(String s) {

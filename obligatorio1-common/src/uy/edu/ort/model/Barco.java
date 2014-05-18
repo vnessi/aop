@@ -11,7 +11,7 @@ import javax.persistence.Table;
  */
 @Table(name="Barco")
 @Entity
-public class Barco extends EntidadPersistente implements Serializable{
+public class Barco extends EntidadPersistente {
     
     @Column(unique = true)
     private String codigo;

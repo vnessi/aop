@@ -41,9 +41,8 @@ public class BarcoServiceImpl implements BarcoService {
 
     @Transactional
     @Override
-    public void removeBarco(String codigo) throws BussinesException {
+    public void removeBarco(Barco barco) throws BussinesException {
         try {
-            Barco barco = barcoDao.obtenerPorPropiedad("codigo", codigo).get(0);
             barcoDao.borrar(barco);
         } catch (GenericException ex) {
             Logger.getLogger(BarcoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -79,7 +78,8 @@ public class BarcoServiceImpl implements BarcoService {
             throw new BussinesException("Error al acceder la Base de Datos");
         }
     }
-
+    
+    @Transactional
     @Override
     public Barco obtenerBarco(String codigo) throws BussinesException {
         try {

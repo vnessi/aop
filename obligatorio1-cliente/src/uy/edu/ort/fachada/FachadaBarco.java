@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package uy.edu.ort;
+package uy.edu.ort.fachada;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -44,7 +44,8 @@ public class FachadaBarco {
     
     public static void eliminarBarco(String codigo) {
         try {
-            barcoDao.removeBarco(codigo);
+            Barco barco = barcoDao.obtenerBarco(codigo);
+            barcoDao.removeBarco(barco);
             System.out.println(">> Barco eliminado con exito");
         } catch (BussinesException ex) {
             Logger.getLogger(FachadaBarco.class.getName()).log(Level.SEVERE, null, ex);
@@ -74,8 +75,8 @@ public class FachadaBarco {
     public static void mostrarBarco(String codigo) {
         try {
             Barco barco = barcoDao.obtenerBarco(codigo);
-            System.out.println("\t\tCodigo \t\tNombre \t\tBandera \t\tCapacidad(kgs) \t\tAño \t\tCantidadTripulantes");
-            System.out.println("\t\t" + barco.getCodigo() +
+            System.out.println("\tId \t\tCodigo \t\tNombre \t\tBandera \t\tCapacidad(kgs) \t\tAño \t\tCantidadTripulantes");
+            System.out.println("\t" + barco.getId() + "\t\t" + barco.getCodigo() +
                     " \t\t" + barco.getNombre() + " \t\t" + barco.getBandera() +
                     " \t\t" + barco.getCapacidadTransporte() + " \t\t"+ String.valueOf(barco.getAnioFabricacion()) +
                     " \t\t" + barco.getCantidadTripulantes());
@@ -88,9 +89,9 @@ public class FachadaBarco {
     public static void listarBarcos() {
         try {
             List<Barco> barcos = barcoDao.listBarcos();
-            System.out.println("\t\tCodigo \t\tNombre \t\tBandera \t\tCapacidad(kgs) \t\tAño \t\tCantidadTripulantes");
+            System.out.println("\tId \t\tCodigo \t\tNombre \t\tBandera \t\tCapacidad(kgs) \t\tAño \t\tCantidadTripulantes");
             for (Barco barco : barcos) {
-                System.out.println("\t\t" + barco.getCodigo() + 
+                System.out.println("\t" + barco.getId() + "\t\t" + barco.getCodigo() + 
                                    " \t\t" + barco.getNombre() + " \t\t" + barco.getBandera() +
                                    " \t\t" + barco.getCapacidadTransporte() + " \t\t"+ String.valueOf(barco.getAnioFabricacion()) +
                                    " \t\t" + barco.getCantidadTripulantes());

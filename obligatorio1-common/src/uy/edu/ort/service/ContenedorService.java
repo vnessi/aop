@@ -17,6 +17,8 @@ public interface ContenedorService {
 
     public void removeContenedor(Contenedor contenedor) throws BussinesException;
     
+    public Contenedor obtenerContenedor(String codigo) throws BussinesException;
+    
     public void modifyContenedor(Contenedor contenedor) throws BussinesException;    
 
     public List<Contenedor> listContenedors() throws BussinesException;

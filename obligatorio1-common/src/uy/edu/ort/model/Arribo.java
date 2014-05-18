@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
  */
 @Table(name="Arribo")
 @Entity
-public class Arribo extends EntidadPersistente implements Serializable{
+public class Arribo extends EntidadPersistente {
     
     @Column
     private String origen;

@@ -43,7 +43,7 @@ public class ArriboServiceImpl implements ArriboService {
         }
 
         //Un Contenedor no puede arribar en diferentes barcos el mismo día.
-        List<Contenedor> contInDB = null;
+        /*List<Contenedor> contInDB = null;
         try {
             contInDB = arriboDAO.getContenedoresDeArribosFecha(new Date());
         } catch (DaoException ex) {
@@ -56,7 +56,7 @@ public class ArriboServiceImpl implements ArriboService {
                     throw new BussinesException("Un Contenedor no puede arribar en diferentes barcos el mismo día.");
                 }
             }
-        }
+        }*/
 
         Arribo a = new Arribo();
         a.setBarco(b);

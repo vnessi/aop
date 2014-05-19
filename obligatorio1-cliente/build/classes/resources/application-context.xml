@@ -28,5 +28,10 @@
         <property name="serviceUrl" value="rmi://localhost:1199/UsernameServiceExported" />
         <property name="serviceInterface" value="uy.edu.ort.service.UsernameService" />
     </bean>
-      
+    
+    <bean id="profilingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+        <property name="serviceUrl" value="rmi://localhost:1199/ProfilingServiceExported" />
+        <property name="serviceInterface" value="uy.edu.ort.service.ProfilingService" />
+    </bean>
+    
 </beans>

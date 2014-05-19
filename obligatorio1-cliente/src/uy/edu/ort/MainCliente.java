@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import uy.edu.ort.fachada.FachadaArribo;
 import uy.edu.ort.fachada.FachadaContenedor;
+import uy.edu.ort.fachada.FachadaProfiling;
 import uy.edu.ort.fachada.FachadaTracing;
 
 /**
@@ -106,10 +107,10 @@ public class MainCliente {
         String arg;
         String nombreUsuario = "";
         printHeader();
-        
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        
-        while(!checkArgs(nombreUsuario)){
+
+        while (!checkArgs(nombreUsuario)) {
             System.out.println(">>Bienvenido! Ingrese un nombre de usuario: \n");
             System.out.print(">> ");
             nombreUsuario = bufferedReader.readLine();
@@ -118,7 +119,7 @@ public class MainCliente {
         while (noSalir) {
             printHeader();
             printCommands();
-            
+
             String line = bufferedReader.readLine();
 
             String[] read = line.trim().split(" ");
@@ -277,7 +278,7 @@ public class MainCliente {
                         System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
                     }
                     break;
-                    
+
                 case "11":
                     System.out.println(">>Generar Reporte: \n"
                             + "\nIngrese el mes para el cual desea generar el reporte \n");
@@ -294,7 +295,15 @@ public class MainCliente {
                         System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
                     }
                     break;
-                    
+
+                case "12":
+                    try {
+                        FachadaProfiling.obtenerReportesProfiling();
+                    } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
+
                 case "99":
                     System.out.println(">>Salir");
                     noSalir = false;
@@ -331,6 +340,7 @@ public class MainCliente {
         System.out.println(">> 9 -\tRegistrar arribo");
         System.out.println(">> 10 -\tReporte arribos por mes");
         System.out.println(">> 11 -\tReporte arribos por mes y barco");
+        System.out.println(">> 12 -\tProfiling");
         System.out.println(">> 99 -\tSalir del sistema");
     }
 

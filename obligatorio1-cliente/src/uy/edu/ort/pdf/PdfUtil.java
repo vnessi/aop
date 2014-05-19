@@ -29,6 +29,7 @@ public class PdfUtil {
     private static String DIR = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("Pdf");
     private static String FILEMES = "ReporteMes.pdf";
     private static String FILEMESBARCO = "ReporteMesBarco.pdf";
+    private static String FILEPROFILING = "Profiling.pdf";
     
     public static void crearReportePDFMes(List<Arribo> arribos, String mes) {
         try {
@@ -61,6 +62,36 @@ public class PdfUtil {
             document.add(new Paragraph("Reporte de arribos para el mes: " + mes + " y el barco: " + codBarco));
             document.add(new Paragraph("\n\n\n"));
             document.add(crearTablaArribosBarcos(arribos));
+           
+            document.close();
+        } catch (DocumentException ex) {
+            Logger.getLogger(PdfUtil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void crearReportePDFProfiling(List<String> masRapido, List<String> masLento, List<List<String>> promedios) {
+        try {
+            Document document = new Document();
+            try {
+                PdfWriter.getInstance((com.itextpdf.text.Document) document, new FileOutputStream(DIR + FILEPROFILING));
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(PdfUtil.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            document.open();
+            document.add(new Paragraph(" Reporte de Profiling "));
+            document.add(new Paragraph("\n\n\n"));
+            
+            document.add(new Paragraph("<< Servicio mas rapido >>"));
+            document.add(new Paragraph(" Servicio >> " + masRapido.get(0) + " con un tiempo: " + masRapido.get(1) + " (nanosegundos)\n"));
+            document.add(new Paragraph("\n\n"));
+            
+            document.add(new Paragraph("<< Servicio mas lento >>"));
+            document.add(new Paragraph(" Servicio >> " + masLento.get(0) + " con un tiempo: " + masLento.get(1) + " (nanosegundos)\n"));
+            document.add(new Paragraph("\n\n"));
+            
+            document.add(new Paragraph("<< Tiempo promedio de ejecucion por servicio >>"));
+            document.add(new Paragraph("\n\n\n"));
+            document.add(crearTablaProfiling(promedios));
            
             document.close();
         } catch (DocumentException ex) {
@@ -123,6 +154,19 @@ public class PdfUtil {
             table.addCell(arribo.getBarco().getCodigo());
             table.addCell(codigoConts);
             table.addCell(String.valueOf(peso));
+            
+        }
+        return table;
+    }
+    
+    private static PdfPTable crearTablaProfiling(List<List<String>> promedios) {
+        PdfPTable table = new PdfPTable(2);
+        
+        table.addCell("Servicio");
+        table.addCell("Tiempo Promedio (nanosegundos)");
+        for (List<String> list : promedios) {
+            table.addCell(list.get(0));
+            table.addCell(list.get(1));
             
         }
         return table;

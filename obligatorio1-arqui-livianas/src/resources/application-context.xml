@@ -97,11 +97,6 @@
     </bean>
     
     <aop:config>
-        <aop:aspect id="myTraceAspect" ref="traceAspect" >
-            <aop:pointcut id="allDaoPC" 
-                          expression="execution( void uy.edu.ort.dao.*.*(..) )" />
-            <aop:after-returning pointcut-ref="allDaoPC" method="trace" />
-        </aop:aspect>            
         
         <aop:aspect id="myProfAspect" ref="profilingAspect" >
             <aop:pointcut id="allServicePC" 
@@ -113,7 +108,5 @@
     <bean id="profilingAspect" class="uy.edu.ort.aop.ProfilingAspect" >
         <property name="reporteEjecucionDao" ref="reporteEjecucionDao"/>
     </bean>
-
-    <bean id="traceAspect" class="uy.edu.ort.aop.TraceAspect" />
     
 </beans>

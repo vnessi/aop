@@ -16,7 +16,7 @@ import uy.edu.ort.model.EntidadPersistente;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Montanter - Victor Nessi
  */
 public class ObjectDaoImpl<T> implements ObjetoDao<T> {
 

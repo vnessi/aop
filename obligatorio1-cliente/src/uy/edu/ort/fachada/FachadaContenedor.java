@@ -18,7 +18,7 @@ import uy.edu.ort.service.ContenedorService;
 
 /**
  *
- * @author victor
+ * @author Bruno Montanter - Victor Nessi victor
  */
 public class FachadaContenedor {
     private static final ApplicationContext ctx = new ClassPathXmlApplicationContext("resources/application-context.xml");

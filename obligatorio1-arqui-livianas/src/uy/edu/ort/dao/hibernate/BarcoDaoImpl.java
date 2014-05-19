@@ -6,7 +6,7 @@ import uy.edu.ort.model.Barco;
 
 /**
  *
- * @author Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
  */
 public class BarcoDaoImpl extends ObjectDaoImpl<Barco> implements BarcoDao{
 

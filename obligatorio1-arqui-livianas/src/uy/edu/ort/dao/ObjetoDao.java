@@ -7,8 +7,8 @@ import uy.edu.ort.model.EntidadPersistente;
 /**
  *
  * @param <T> 
- * @author Victor Nessi
- * @author Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi Victor Nessi
+ * @author Bruno Montanter - Victor Nessi Bruno Montaner
  * 
  */
 public interface ObjetoDao <T> {

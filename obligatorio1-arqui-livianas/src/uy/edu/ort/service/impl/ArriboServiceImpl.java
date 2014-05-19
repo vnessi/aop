@@ -20,7 +20,7 @@ import uy.edu.ort.service.BussinesException;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Montanter - Victor Nessi Bruno
  */
 public class ArriboServiceImpl implements ArriboService {
 

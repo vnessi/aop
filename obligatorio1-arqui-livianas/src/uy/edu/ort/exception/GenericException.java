@@ -10,8 +10,8 @@ import uy.edu.ort.util.LogUtil;
 
 /**
  *
- * @author Victor Nessi
- * @author Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi Victor Nessi
+ * @author Bruno Montanter - Victor Nessi Bruno Montaner
  */
 public class GenericException extends Exception {
 

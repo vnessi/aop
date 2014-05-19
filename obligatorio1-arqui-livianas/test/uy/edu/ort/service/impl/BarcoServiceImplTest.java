@@ -9,24 +9,28 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 import uy.edu.ort.model.Barco;
 import uy.edu.ort.service.BarcoService;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Montanter - Victor Nessi Bruno
  */
+@TransactionConfiguration(transactionManager="transactionManager", defaultRollback=false) 
+@Transactional
 public class BarcoServiceImplTest {
-
     public static BarcoService instance;
-    
+
     @BeforeClass
     public static void setUpClass() {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("resources/application-context.xml");
         instance = (BarcoService) ctx.getBean("barcoService");
     }
-    
-    private Barco getBarco(){
+
+    private Barco getBarco() {
         Barco b = new Barco();
         b.setAnioFabricacion(1990);
         b.setBandera("MEXICO");
@@ -38,38 +42,43 @@ public class BarcoServiceImplTest {
         return b;
     }
 
-
     /**
      * Test of addBarco method, of class BarcoServiceImpl.
      */
     @Test
+    @Rollback(true)  
     public void testAddRemoveBarco() throws Exception {
         System.out.println("addBarco");
         int barcosBeforeCount = instance.listBarcos().size();
         Barco b = getBarco();
         instance.addBarco(b);
         assertEquals(b.getBandera(), "MEXICO");
-        assertEquals(barcosBeforeCount+1, instance.listBarcos().size());
-       
+        assertEquals(barcosBeforeCount + 1, instance.listBarcos().size());
+
         instance.removeBarco(b);
         assertEquals(barcosBeforeCount, instance.listBarcos().size());
+        
     }
-/**
+
+    /**
      * Test of addBarco method, of class BarcoServiceImpl.
      */
     @Test
+    @Rollback(true)  
     public void testModifyBarco() throws Exception {
+        
         System.out.println("modifyBarco");
         String bandera;
         Barco barco0 = instance.listBarcos().get(0);
         bandera = barco0.getBandera();
-        barco0.setBandera(bandera+" Test");
+        barco0.setBandera(bandera + " Test");
         instance.modifyBarco(barco0);
         Barco barco0Modi = instance.listBarcos().get(0);
-        assertEquals(barco0Modi.getBandera(),bandera+" Test");
+        assertEquals(barco0Modi.getBandera(), bandera + " Test");
     }
-    
-     @Test
+
+    @Test
+    @Rollback(true)  
     public void testObtenerBarco() throws Exception {
         System.out.println("ObtenerBarco");
         Barco b = getBarco();
@@ -77,8 +86,7 @@ public class BarcoServiceImplTest {
         instance.addBarco(b);
         Barco barco0 = instance.obtenerBarco(b.getCodigo());
         assertEquals(barco0.getId(), b.getId());
-                
-        
+
     }
-     
+
 }

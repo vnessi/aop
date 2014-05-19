@@ -21,7 +21,7 @@ import uy.edu.ort.service.BarcoService;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Montanter - Victor Nessi Bruno
  */
 public class ArriboServiceImplTest {
 

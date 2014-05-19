@@ -8,7 +8,7 @@ import uy.edu.ort.model.Contenedor;
 
 /**
  *
- * @author Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
  */
 public interface ArriboDao extends ObjetoDao<Arribo>{
     

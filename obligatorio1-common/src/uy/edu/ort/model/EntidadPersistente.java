@@ -9,8 +9,8 @@ import javax.persistence.Version;
 
 /**
  *
- * @author Victor Nessi
- * @author Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi Victor Nessi
+ * @author Bruno Montanter - Victor Nessi Bruno Montaner
  * 
  * Clase padre que engloba las propiedades comunes 
  * a las entidades que se van a persistir.

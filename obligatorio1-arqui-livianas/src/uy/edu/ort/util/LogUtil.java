@@ -11,7 +11,7 @@ import uy.edu.ort.propiedades.ManejoPropiedades;
 
 /**
  *
- * @author Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
  */
 public class LogUtil {
     

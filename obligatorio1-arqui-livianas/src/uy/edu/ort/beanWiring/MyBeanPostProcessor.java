@@ -11,7 +11,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 
 /**
  *
- * @author alumnoFI
+ * @author Bruno Montanter - Victor Nessi alumnoFI
  */
 public class MyBeanPostProcessor implements BeanPostProcessor {
 

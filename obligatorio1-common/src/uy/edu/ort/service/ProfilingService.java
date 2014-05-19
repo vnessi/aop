@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Montanter - Victor Nessi Bruno
  */
 public interface ProfilingService {
     

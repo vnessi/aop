@@ -9,7 +9,7 @@ import uy.edu.ort.model.ReporteEjecucion;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Montanter - Victor Nessi Bruno
  */
 public interface ReporteEjecucionDao extends ObjetoDao<ReporteEjecucion>{
     

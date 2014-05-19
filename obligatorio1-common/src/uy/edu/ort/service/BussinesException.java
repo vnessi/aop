@@ -6,7 +6,7 @@ package uy.edu.ort.service;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Montanter - Victor Nessi Bruno
  */
 public class BussinesException extends Exception{
 

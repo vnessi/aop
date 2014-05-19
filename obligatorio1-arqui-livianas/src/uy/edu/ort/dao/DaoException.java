@@ -5,7 +5,7 @@ import uy.edu.ort.exception.GenericException;
 
 /**
  *
- * @author Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
  */
 public class DaoException extends GenericException {
 

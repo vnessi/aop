@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 /**
  *
- * @author Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
  */
 @Table(name="Contenedor")
 @Entity

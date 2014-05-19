@@ -12,5 +12,6 @@
     <mapping class="uy.edu.ort.model.Barco"/>
     <mapping class="uy.edu.ort.model.Arribo"/>
     <mapping class="uy.edu.ort.model.Contenedor"/>
+    <mapping class="uy.edu.ort.model.ReporteEjecucion"/>
   </session-factory>
 </hibernate-configuration>

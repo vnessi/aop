@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
  */
 @Table(name="Arribo")
 @Entity

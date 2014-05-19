@@ -21,7 +21,7 @@ import uy.edu.ort.service.BussinesException;
  */
 /**
  *
- * @author viti
+ * @author Bruno Montanter - Victor Nessi viti
  */
 public class Main {
 

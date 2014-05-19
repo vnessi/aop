@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Montanter - Victor Nessi Bruno
  */
 @Entity
 public class ReporteEjecucion extends EntidadPersistente implements Serializable{

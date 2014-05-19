@@ -24,4 +24,13 @@
         <property name="serviceInterface" value="uy.edu.ort.service.ContenedorService" />
     </bean>
     
+     <aop:config>
+        <aop:aspect id="myTraceAspect" ref="traceAspect" >
+            <aop:pointcut id="allDaoPC" expression="execution( void uy.edu.ort.*.*.*(..) )" />
+            <aop:after-returning pointcut-ref="allDaoPC" method="trace" />
+        </aop:aspect>
+     </aop:config>
+    
+    <bean id="traceAspect" class="uy.edu.ort.aop.TraceAspect" />
+        
 </beans>

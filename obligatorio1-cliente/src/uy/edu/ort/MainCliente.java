@@ -14,7 +14,7 @@ import uy.edu.ort.fachada.FachadaContenedor;
 
 /**
  *
- * @author victor
+ * @author Bruno Montanter - Victor Nessi victor
  */
 public class MainCliente {
 
@@ -252,6 +252,37 @@ public class MainCliente {
                     }
                     break;
 
+                case "10":
+                    System.out.println(">>Generar Reporte: \n"
+                            + "\nIngrese el mes para el cual desea generar el reporte \n");
+                    System.out.print(">> ");
+                    arg = bufferedReader.readLine();
+                    try {
+                        if (checkArgs(arg)) {
+                            FachadaArribo.generarReporteArribosMes(arg);
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
+                    
+                case "11":
+                    System.out.println(">>Generar Reporte: \n"
+                            + "\nIngrese el mes para el cual desea generar el reporte \n");
+                    System.out.print(">> ");
+                    arg = bufferedReader.readLine();
+                    System.out.println(">>Ingrese el codigo de barco para el cual desea generar el reporte \n");
+                    System.out.print(">> ");
+                    codBarco = bufferedReader.readLine();
+                    try {
+                        if (checkArgs(arg) && checkArgs(codBarco)) {
+                            FachadaArribo.generarReporteArribosMesBarco(arg, codBarco);
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
+                    
                 case "99":
                     System.out.println(">>Salir");
                     noSalir = false;
@@ -286,6 +317,8 @@ public class MainCliente {
         System.out.println(">> 7 -\tModificar Contenedor");
         System.out.println(">> 8 -\tListar Contenedores");
         System.out.println(">> 9 -\tRegistrar arribo");
+        System.out.println(">> 10 -\tReporte arribos por mes");
+        System.out.println(">> 11 -\tReporte arribos por mes y barco");
         System.out.println(">> 99 -\tSalir del sistema");
     }
 

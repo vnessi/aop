@@ -16,7 +16,7 @@ import uy.edu.ort.service.BussinesException;
 
 /**
  *
- * @author victor
+ * @author Bruno Montanter - Victor Nessi victor
  */
 public class FachadaBarco {
     

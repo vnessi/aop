@@ -13,7 +13,7 @@ import uy.edu.ort.service.ProfilingService;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Montanter - Victor Nessi Bruno
  */
 public class ProfilingServiceImpl implements ProfilingService{
 

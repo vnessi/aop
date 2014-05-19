@@ -9,7 +9,7 @@ import uy.edu.ort.model.Contenedor;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Montanter - Victor Nessi Bruno
  */
 public interface ContenedorService {
     

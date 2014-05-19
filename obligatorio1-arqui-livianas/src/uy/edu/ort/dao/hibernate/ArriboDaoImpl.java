@@ -4,9 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
 import uy.edu.ort.dao.ArriboDao;
 import uy.edu.ort.dao.DaoException;
 import uy.edu.ort.model.Arribo;
@@ -14,7 +11,7 @@ import uy.edu.ort.model.Contenedor;
 
 /**
  *
- * @author Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
  */
 public class ArriboDaoImpl extends ObjectDaoImpl<Arribo> implements ArriboDao {
 

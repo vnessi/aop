@@ -10,7 +10,7 @@ import uy.edu.ort.model.ReporteEjecucion;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Montanter - Victor Nessi Bruno
  */
 public class ReporteEjecucionDaoImpl extends ObjectDaoImpl<ReporteEjecucion> implements ReporteEjecucionDao {
 

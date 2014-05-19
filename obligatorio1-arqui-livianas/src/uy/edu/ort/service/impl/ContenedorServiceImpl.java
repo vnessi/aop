@@ -16,7 +16,7 @@ import uy.edu.ort.service.ContenedorService;
 
 /**
  *
- * @author Bruno
+ * @author Bruno Montanter - Victor Nessi Bruno
  */
 public class ContenedorServiceImpl implements ContenedorService{
  

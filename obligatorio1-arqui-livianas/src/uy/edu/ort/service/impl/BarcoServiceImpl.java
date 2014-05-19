@@ -13,7 +13,7 @@ import uy.edu.ort.service.BussinesException;
 
 /**
  *
- * @author Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
  */
 public class BarcoServiceImpl implements BarcoService {
 

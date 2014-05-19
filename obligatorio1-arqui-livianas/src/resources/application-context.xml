@@ -51,11 +51,23 @@
         <property name="contenedorDao" ref="contenedorDao"/>
     </bean>
     
+    <bean id="profilingService" class="uy.edu.ort.service.impl.ProfilingServiceImpl" >
+        <property name="reporteEjecucionDao" ref="reporteEjecucionDao"/>
+    </bean>
+    
     <bean id="arriboDao" class="uy.edu.ort.dao.hibernate.ArriboDaoImpl">
         <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
     
     <bean id="contenedorDao" class="uy.edu.ort.dao.hibernate.ContenedorDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
+    
+    <bean id="barcoDao" class="uy.edu.ort.dao.hibernate.BarcoDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
+    
+    <bean id="reporteEjecucionDao" class="uy.edu.ort.dao.hibernate.ReporteEjecucionDaoImpl">
         <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
 
@@ -74,7 +86,25 @@
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
         <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
     </bean>
-    <bean id="barcoDao" class="uy.edu.ort.dao.hibernate.BarcoDaoImpl">
-        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    
+    <aop:config>
+        <aop:aspect id="myTraceAspect" ref="traceAspect" >
+            <aop:pointcut id="allDaoPC" 
+                          expression="execution( void uy.edu.ort.dao.*.*(..) )" />
+            <aop:after-returning pointcut-ref="allDaoPC" method="trace" />
+        </aop:aspect>            
+        
+        <aop:aspect id="myProfAspect" ref="profilingAspect" >
+            <aop:pointcut id="allServicePC" 
+                          expression="execution(* uy.edu.ort.service.*.*(..) )" />
+            <aop:around pointcut-ref="allServicePC" method="profile" />
+        </aop:aspect>        
+    </aop:config>
+    
+    <bean id="profilingAspect" class="uy.edu.ort.aop.ProfilingAspect" >
+        <property name="reporteEjecucionDao" ref="reporteEjecucionDao"/>
     </bean>
+
+    <bean id="traceAspect" class="uy.edu.ort.aop.TraceAspect" />
+    
 </beans>

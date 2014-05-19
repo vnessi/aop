@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import uy.edu.ort.fachada.FachadaArribo;
 import uy.edu.ort.fachada.FachadaContenedor;
+import uy.edu.ort.fachada.FachadaTracing;
 
 /**
  *
@@ -113,6 +114,7 @@ public class MainCliente {
             System.out.print(">> ");
             nombreUsuario = bufferedReader.readLine();
         }
+        FachadaTracing.setearUsername(nombreUsuario);
         while (noSalir) {
             printHeader();
             printCommands();

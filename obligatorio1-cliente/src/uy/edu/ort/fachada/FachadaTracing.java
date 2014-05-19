@@ -6,11 +6,20 @@
 
 package uy.edu.ort.fachada;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import uy.edu.ort.service.ContenedorService;
+import uy.edu.ort.service.UsernameService;
+
 /**
  *
  * @author viti
  */
 public class FachadaTracing {
-    public static void setearUsername(){
+    private static final ApplicationContext ctx = new ClassPathXmlApplicationContext("resources/application-context.xml");
+    private static final UsernameService usernameService = (UsernameService) ctx.getBean("usernameService");
+    
+    public static void setearUsername(String username){
+        usernameService.setearNombreUsuario(username);
     }
 }

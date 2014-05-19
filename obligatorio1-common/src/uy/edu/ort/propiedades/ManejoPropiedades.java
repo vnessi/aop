@@ -7,8 +7,7 @@ import java.util.Properties;
 /**
  * Clase encargada de manejar las propiedades del Sistema.
  *
- * @author Bruno Montanter - Victor Nessi Victor Nessi
- * @author Bruno Montanter - Victor Nessi Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi
  */
 public class ManejoPropiedades {
 
@@ -23,7 +22,7 @@ public class ManejoPropiedades {
      * Obtengo una instancia de ManejoPropiedades
      *
      * @return
-     * @throws PropiedadesPaooException  
+     * @throws   
      */
     public static ManejoPropiedades obtenerInstancia() {
         if (instancia == null) {

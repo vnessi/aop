@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uy.edu.ort.fachada;
 
 import java.util.List;
@@ -16,7 +11,9 @@ import uy.edu.ort.service.BussinesException;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi victor
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Fachada para manejar las operaciones relacionadas con el objeto Barco
  */
 public class FachadaBarco {
     

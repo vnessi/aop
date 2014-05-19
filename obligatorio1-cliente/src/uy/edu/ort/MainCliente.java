@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uy.edu.ort;
 
 import uy.edu.ort.fachada.FachadaBarco;
@@ -16,7 +11,7 @@ import uy.edu.ort.fachada.FachadaTracing;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi victor
+ * @author Bruno Montanter - Victor Nessi
  */
 public class MainCliente {
 
@@ -24,85 +19,7 @@ public class MainCliente {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-//        try {
-//            ApplicationContext applicationContext = new ClassPathXmlApplicationContext("resources/application-context.xml");
-//            
-//            ArriboService aDao = (ArriboService) applicationContext.getBean("arriboService");
-//            
-//            BarcoService barcoDao = (BarcoService) applicationContext.getBean("barcoService");
-//            Barco b = new Barco();
-//            b.setAnioFabricacion(2);
-//            b.setBandera("si tiene");
-//            b.setCantidadTripulantes(22);
-//            b.setCapacidadTransporte(1000);
-//            b.setCodigo("no code");
-//            b.setNombre("name barcoooooooo");
-//            barcoDao.addBarco(b);
-//            
-//            //ContenedorService cDao = (ContenedorService) applicationContext.getBean("contenedorService");
-//            Contenedor c = new Contenedor();
-//            c.setCapacidad(10);
-//            c.setCodigo("1");
-//            c.setMarca("Marqueta");
-//            c.setModelo("Modelo");
-//            //cDao.addContenedor(c);
-//            //cDao.addContenedor(c);
-//            
-//            //b.setBandera("Chile");
-//            //barcoDao.modifyBarco(b);
-//            
-//            
-//            List<Contenedor> cList = new ArrayList<Contenedor>();
-//            cList.add(c);
-//            aDao.registrarArribo(b, cList, "Descripcion", "Desconocido");
-//            
-//            
-//            
-//        } catch (BussinesException ex) {
-//            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        ApplicationContext ctx = new ClassPathXmlApplicationContext("resources/application-context.xml");
-//        ApplicationContext ctx1 = new ClassPathXmlApplicationContext("resources/application-context.xml");
-//        ArriboService aservice = (ArriboService) ctx1.getBean("arriboService");
-//
-//        BarcoService barcoDao = (BarcoService) ctx.getBean("barcoService");
-//        //BarcoDao barcoDaoo = (BarcoDao) ctx.getBean("barcoDao");
-//        Barco b = new Barco();
-//        b.setAnioFabricacion(19);
-//        b.setBandera("no tiene lalala");
-//        b.setCantidadTripulantes(22);
-//        b.setCapacidadTransporte(1000);
-//        b.setCodigo("no code");
-//        b.setNombre("name barc");
-//        
-//        try {        
-//        
-//            barcoDao.addBarco(b);
-//            //System.out.println(barcoDao.listBarcos().toString());
-//            
-//            //b.setBandera("Luna");
-//            //barcoDao.modifyBarco(b);
-//            
-//            List<Contenedor> conts = new ArrayList<>();
-//            Contenedor c = new Contenedor();
-//            c.setCapacidad(33);
-//            c.setCodigo("CODE cont");
-//            c.setMarca("Marca");
-//            c.setModelo("nice1");
-//            
-//            conts.add(c);
-//            aservice.registrarArribo(b, conts, "Descriptioin ", "CHINA");
 
-        //System.out.println(aservice.generarReporteArribosMes(5));
-        //aservice.registrarArribo(b, null, null, null);
-        //  BarcoDao bdao ;
-        //System.out.print(bdao.obtenerTodos());*/
-//        } catch (BussinesException ex) {
-//            //Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        Runtime.getRuntime().exec("cls");    
-//        printHeader();
-//            printCommands();
         boolean noSalir = true;
         String arg;
         String nombreUsuario = "";

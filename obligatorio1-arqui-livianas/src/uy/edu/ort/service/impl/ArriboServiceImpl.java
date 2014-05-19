@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package uy.edu.ort.service.impl;
 
 import java.util.Date;
@@ -20,7 +17,9 @@ import uy.edu.ort.service.BussinesException;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Bruno
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Implementacion de los servicios de Arribo para exponer por RMI
  */
 public class ArriboServiceImpl implements ArriboService {
 

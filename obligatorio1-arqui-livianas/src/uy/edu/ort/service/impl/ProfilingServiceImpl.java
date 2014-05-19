@@ -1,19 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package uy.edu.ort.service.impl;
 
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 import uy.edu.ort.dao.ReporteEjecucionDao;
-import uy.edu.ort.model.ReporteEjecucion;
 import uy.edu.ort.service.ProfilingService;
 
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Bruno
+ * @author Bruno Montanter - Victor Nessi 
  */
 public class ProfilingServiceImpl implements ProfilingService{
 

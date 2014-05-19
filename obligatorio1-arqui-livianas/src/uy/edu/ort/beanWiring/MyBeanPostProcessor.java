@@ -11,7 +11,9 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi alumnoFI
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Bean Post Processor para interceptar e imprimir en consola los Beans creados
  */
 public class MyBeanPostProcessor implements BeanPostProcessor {
 

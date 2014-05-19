@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package uy.edu.ort.service.impl;
 
 import java.util.List;
@@ -16,7 +13,9 @@ import uy.edu.ort.service.ContenedorService;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Bruno
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Implementacion de las operaciones de Contenedor para exponer por RMI
  */
 public class ContenedorServiceImpl implements ContenedorService{
  

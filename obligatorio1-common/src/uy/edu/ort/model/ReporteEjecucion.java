@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package uy.edu.ort.model;
 
 import java.io.Serializable;
@@ -10,7 +6,7 @@ import javax.persistence.Entity;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Bruno
+ * @author Bruno Montanter - Victor Nessi
  */
 @Entity
 public class ReporteEjecucion extends EntidadPersistente implements Serializable{

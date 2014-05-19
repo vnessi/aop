@@ -10,7 +10,9 @@ import uy.edu.ort.model.ReporteEjecucion;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Bruno
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Implementacion Hibernate de las operaciones DAO de Reportes
  */
 public class ReporteEjecucionDaoImpl extends ObjectDaoImpl<ReporteEjecucion> implements ReporteEjecucionDao {
 

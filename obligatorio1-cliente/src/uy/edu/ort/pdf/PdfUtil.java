@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package uy.edu.ort.pdf;
 
 import com.itextpdf.text.Document;
@@ -22,7 +17,9 @@ import uy.edu.ort.propiedades.ManejoPropiedades;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi victor
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Clase auxiliar para manejar las operaciones de creacion y manejo de datos para los archivos PDF
  */
 public class PdfUtil {
 

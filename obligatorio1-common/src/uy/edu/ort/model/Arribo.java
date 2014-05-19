@@ -1,6 +1,5 @@
 package uy.edu.ort.model;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -15,7 +14,7 @@ import javax.persistence.TemporalType;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi
  */
 @Table(name="Arribo")
 @Entity

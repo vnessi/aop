@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package uy.edu.ort.fachada;
 
 import java.util.List;
@@ -11,14 +5,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import uy.edu.ort.model.Barco;
 import uy.edu.ort.model.Contenedor;
 import uy.edu.ort.service.BussinesException;
 import uy.edu.ort.service.ContenedorService;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi victor
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Fachada con las operaciones relacionada con el objeto Contenedor
  */
 public class FachadaContenedor {
     private static final ApplicationContext ctx = new ClassPathXmlApplicationContext("resources/application-context.xml");

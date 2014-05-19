@@ -13,7 +13,9 @@ import uy.edu.ort.service.BussinesException;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Servicios para exponer por RMI de las operaciones de Barco
  */
 public class BarcoServiceImpl implements BarcoService {
 

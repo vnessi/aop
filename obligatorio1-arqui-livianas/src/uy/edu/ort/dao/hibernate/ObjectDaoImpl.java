@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package uy.edu.ort.dao.hibernate;
 
 import java.lang.reflect.ParameterizedType;
@@ -17,6 +14,8 @@ import uy.edu.ort.model.EntidadPersistente;
 /**
  *
  * @author Bruno Montanter - Victor Nessi
+ * 
+ * Clase que implementa las operaciones DAO basicas utilizando Generics
  */
 public class ObjectDaoImpl<T> implements ObjetoDao<T> {
 

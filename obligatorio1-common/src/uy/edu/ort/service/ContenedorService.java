@@ -9,7 +9,9 @@ import uy.edu.ort.model.Contenedor;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Bruno
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Interface con las operaciones de Contenedor
  */
 public interface ContenedorService {
     

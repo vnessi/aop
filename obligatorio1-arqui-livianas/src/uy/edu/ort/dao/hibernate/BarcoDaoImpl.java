@@ -6,7 +6,9 @@ import uy.edu.ort.model.Barco;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Implementacion que utiliza los DAO Hibernate de ObjetoDaoImpl
  */
 public class BarcoDaoImpl extends ObjectDaoImpl<Barco> implements BarcoDao{
 

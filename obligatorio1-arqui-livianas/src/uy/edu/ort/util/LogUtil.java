@@ -11,7 +11,9 @@ import uy.edu.ort.propiedades.ManejoPropiedades;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Clase auxiliar para guardar en logs
  */
 public class LogUtil {
     

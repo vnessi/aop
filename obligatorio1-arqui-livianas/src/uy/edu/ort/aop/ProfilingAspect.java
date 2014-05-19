@@ -3,11 +3,15 @@ package uy.edu.ort.aop;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
-import uy.edu.ort.dao.ArriboDao;
 import uy.edu.ort.dao.ReporteEjecucionDao;
 import uy.edu.ort.exception.GenericException;
 import uy.edu.ort.model.ReporteEjecucion;
 
+/**
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Aspecto encargado de calcular el tiempo de ejecucion de las operaciones
+ */
 public class ProfilingAspect {
 
      public ReporteEjecucionDao reporteEjecucionDAO;

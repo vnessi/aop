@@ -9,6 +9,8 @@ package uy.edu.ort.service;
 /**
  *
  * @author Bruno Montaner - Victor Nessi
+ * 
+ * Interface con el servicio para setear el username de Tracing
  */
 public interface UsernameService {
     

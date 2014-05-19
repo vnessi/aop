@@ -8,7 +8,9 @@ import java.util.List;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Bruno
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Interface con las operaciones de Profiling
  */
 public interface ProfilingService {
     

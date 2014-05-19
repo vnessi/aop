@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package uy.edu.ort.service;
 
 import java.util.Date;
@@ -12,7 +8,9 @@ import uy.edu.ort.model.Contenedor;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Bruno
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Interface con las operaciones de Arribo
  */
 public interface ArriboService {
 

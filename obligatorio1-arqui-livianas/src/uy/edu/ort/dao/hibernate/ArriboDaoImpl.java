@@ -11,7 +11,9 @@ import uy.edu.ort.model.Contenedor;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Implementacion de DAO Arribo con Hibernate
  */
 public class ArriboDaoImpl extends ObjectDaoImpl<Arribo> implements ArriboDao {
 

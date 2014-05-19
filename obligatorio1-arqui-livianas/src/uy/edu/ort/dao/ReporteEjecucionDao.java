@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package uy.edu.ort.dao;
 
 import java.util.List;
@@ -9,7 +6,9 @@ import uy.edu.ort.model.ReporteEjecucion;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Bruno
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Interface con las operaciones Reportes
  */
 public interface ReporteEjecucionDao extends ObjetoDao<ReporteEjecucion>{
     

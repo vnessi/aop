@@ -7,8 +7,9 @@ import uy.edu.ort.model.EntidadPersistente;
 /**
  *
  * @param <T> 
- * @author Bruno Montanter - Victor Nessi Victor Nessi
- * @author Bruno Montanter - Victor Nessi Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Interface con las operaciones DAO genericas
  * 
  */
 public interface ObjetoDao <T> {

@@ -6,7 +6,9 @@ import uy.edu.ort.model.Barco;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Victor Nessi - Bruno Montaner
+ * @author Bruno Montanter - Victor Nessi
+ * 
+ * Interface con las operaciones de Barco
  */
 public interface BarcoService {
     

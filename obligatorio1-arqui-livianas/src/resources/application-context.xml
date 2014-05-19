@@ -38,6 +38,15 @@
         <property name="registryPort" value="1199" />
     </bean>
     
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <!-- puede tener cualquier nombre-->
+        <property name="serviceName" value="ProfilingServiceExported" />
+        <property name="service" ref="profilingService" />
+        <property name="serviceInterface" value="uy.edu.ort.service.ProfilingService" />
+        <!-- default 1099 -->
+        <property name="registryPort" value="1199" />
+    </bean>
+    
     <bean id="arriboService" class="uy.edu.ort.service.impl.ArriboServiceImpl" >
         <property name="arriboDao" ref="arriboDao"/>
     </bean>

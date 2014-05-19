@@ -103,10 +103,20 @@ public class MainCliente {
 //            printCommands();
         boolean noSalir = true;
         String arg;
+        String nombreUsuario = "";
+        printHeader();
+        
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        
+        while(!checkArgs(nombreUsuario)){
+            System.out.println(">>Bienvenido! Ingrese un nombre de usuario: \n");
+            System.out.print(">> ");
+            nombreUsuario = bufferedReader.readLine();
+        }
         while (noSalir) {
             printHeader();
             printCommands();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            
             String line = bufferedReader.readLine();
 
             String[] read = line.trim().split(" ");

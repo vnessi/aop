@@ -47,6 +47,18 @@
         <property name="registryPort" value="1199" />
     </bean>
     
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <!-- puede tener cualquier nombre-->
+        <property name="serviceName" value="UsernameServiceExported" />
+        <property name="service" ref="usernameService" />
+        <property name="serviceInterface" value="uy.edu.ort.service.UsernameService" />
+        <!-- default 1099 -->
+        <property name="registryPort" value="1199" />
+    </bean>
+    
+    <bean id="usernameService" class="uy.edu.ort.service.impl.UsernameServiceImpl" >
+    </bean>
+    
     <bean id="arriboService" class="uy.edu.ort.service.impl.ArriboServiceImpl" >
         <property name="arriboDao" ref="arriboDao"/>
     </bean>
@@ -108,5 +120,15 @@
     <bean id="profilingAspect" class="uy.edu.ort.aop.ProfilingAspect" >
         <property name="reporteEjecucionDao" ref="reporteEjecucionDao"/>
     </bean>
+    
+    <aop:config>
+        <aop:aspect id="myTraceAspect" ref="traceAspect" >
+            <aop:pointcut id="allDaoPC" expression="execution( void uy.edu.ort.*.*.*(..) )" />
+            <aop:after-returning pointcut-ref="allDaoPC" method="trace" />
+        </aop:aspect>
+     </aop:config>
+    
+    <bean id="traceAspect" class="uy.edu.ort.aop.TraceAspect" />
+       
     
 </beans>

@@ -13,7 +13,7 @@
         <property name="serviceUrl" value="rmi://localhost:1199/ArriboServiceExported" />
         <property name="serviceInterface" value="uy.edu.ort.service.ArriboService" />
     </bean>
-
+    
     <bean id="barcoService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
         <property name="serviceUrl" value="rmi://localhost:1199/BarcoServiceExported" />
         <property name="serviceInterface" value="uy.edu.ort.service.BarcoService" />
@@ -24,13 +24,9 @@
         <property name="serviceInterface" value="uy.edu.ort.service.ContenedorService" />
     </bean>
     
-     <aop:config>
-        <aop:aspect id="myTraceAspect" ref="traceAspect" >
-            <aop:pointcut id="allDaoPC" expression="execution( void uy.edu.ort.*.*.*(..) )" />
-            <aop:after-returning pointcut-ref="allDaoPC" method="trace" />
-        </aop:aspect>
-     </aop:config>
-    
-    <bean id="traceAspect" class="uy.edu.ort.aop.TraceAspect" />
-        
+    <bean id="usernameService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+        <property name="serviceUrl" value="rmi://localhost:1199/UsernameServiceExported" />
+        <property name="serviceInterface" value="uy.edu.ort.service.UsernameService" />
+    </bean>
+      
 </beans>

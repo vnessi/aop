@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+          http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>    
+    
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <!-- puede tener cualquier nombre-->
+        <property name="serviceName" value="BarcoServiceExported" />
+        <property name="service" ref="barcoService" />
+        <property name="serviceInterface" value="uy.edu.ort.service.BarcoService" />
+        <!-- default 1099 -->
+        <property name="registryPort" value="1199" />
+    </bean>
+    
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <!-- puede tener cualquier nombre-->
+        <property name="serviceName" value="ContenedorServiceExported" />
+        <property name="service" ref="contenedorService" />
+        <property name="serviceInterface" value="uy.edu.ort.service.ContenedorService" />
+        <!-- default 1099 -->
+        <property name="registryPort" value="1199" />
+    </bean>
+    
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <!-- puede tener cualquier nombre-->
+        <property name="serviceName" value="ArriboServiceExported" />
+        <property name="service" ref="arriboService" />
+        <property name="serviceInterface" value="uy.edu.ort.service.ArriboService" />
+        <!-- default 1099 -->
+        <property name="registryPort" value="1199" />
+    </bean>
+    
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <!-- puede tener cualquier nombre-->
+        <property name="serviceName" value="ProfilingServiceExported" />
+        <property name="service" ref="profilingService" />
+        <property name="serviceInterface" value="uy.edu.ort.service.ProfilingService" />
+        <!-- default 1099 -->
+        <property name="registryPort" value="1199" />
+    </bean>
+    
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <!-- puede tener cualquier nombre-->
+        <property name="serviceName" value="UsernameServiceExported" />
+        <property name="service" ref="usernameService" />
+        <property name="serviceInterface" value="uy.edu.ort.service.UsernameService" />
+        <!-- default 1099 -->
+        <property name="registryPort" value="1199" />
+    </bean>
+    
+    <bean id="usernameService" class="uy.edu.ort.service.impl.UsernameServiceImpl" >
+    </bean>
+    
+    <bean id="arriboService" class="uy.edu.ort.service.impl.ArriboServiceImpl" >
+        <property name="arriboDao" ref="arriboDao"/>
+    </bean>
+    
+    <bean id="barcoService" class="uy.edu.ort.service.impl.BarcoServiceImpl" >
+        <property name="arriboDao" ref="arriboDao"/>
+        <property name="barcoDao" ref="barcoDao"/>
+    </bean>
+    
+    <bean id="contenedorService" class="uy.edu.ort.service.impl.ContenedorServiceImpl" >
+        <property name="contenedorDao" ref="contenedorDao"/>
+    </bean>
+    
+    <bean id="profilingService" class="uy.edu.ort.service.impl.ProfilingServiceImpl" >
+        <property name="reporteEjecucionDao" ref="reporteEjecucionDao"/>
+    </bean>
+    
+    <bean id="arriboDao" class="uy.edu.ort.dao.hibernate.ArriboDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
+    
+    <bean id="contenedorDao" class="uy.edu.ort.dao.hibernate.ContenedorDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
+    
+    <bean id="barcoDao" class="uy.edu.ort.dao.hibernate.BarcoDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
+    
+    <bean id="reporteEjecucionDao" class="uy.edu.ort.dao.hibernate.ReporteEjecucionDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
+
+    <bean id="myBeanPostProcessor" class="uy.edu.ort.beanWiring.MyBeanPostProcessor"></bean>
+    
+    <!-- Hibernate Template -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="hibernateTemplate"  class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+    </bean>
+    
+    <aop:config>
+        
+        <aop:aspect id="myProfAspect" ref="profilingAspect" >
+            <aop:pointcut id="allServicePC" 
+                          expression="execution(* uy.edu.ort.service.*.*(..) )" />
+            <aop:around pointcut-ref="allServicePC" method="profile" />
+        </aop:aspect>        
+    </aop:config>
+    
+    <bean id="profilingAspect" class="uy.edu.ort.aop.ProfilingAspect" >
+        <property name="reporteEjecucionDao" ref="reporteEjecucionDao"/>
+    </bean>
+    
+    <aop:config>
+        <aop:aspect id="myTraceAspect" ref="traceAspect" >
+            <aop:pointcut id="allDaoPC" expression="execution( void uy.edu.ort.*.*.*(..) )" />
+            <aop:after-returning pointcut-ref="allDaoPC" method="trace" />
+        </aop:aspect>
+     </aop:config>
+    
+    <bean id="traceAspect" class="uy.edu.ort.aop.TraceAspect" />
+       
+    
+</beans>

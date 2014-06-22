@@ -17,7 +17,7 @@ import uy.edu.ort.service.BarcoService;
 
 /**
  *
- * @author Bruno Montanter - Victor Nessi Bruno
+ * @author Bruno Montanter - Victor Nessi
  */
 @TransactionConfiguration(transactionManager="transactionManager", defaultRollback=false) 
 @Transactional

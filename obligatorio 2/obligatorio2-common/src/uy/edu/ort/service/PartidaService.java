@@ -1,6 +1,9 @@
 package uy.edu.ort.service;
 
+import java.util.Date;
 import java.util.List;
+import uy.edu.ort.model.Barco;
+import uy.edu.ort.model.Contenedor;
 import uy.edu.ort.model.Partida;
 
 /**
@@ -11,13 +14,9 @@ import uy.edu.ort.model.Partida;
  */
 public interface PartidaService {
     
-    public void addPartida(Partida partida) throws BussinesException;
+    public void registrarPartida(Barco b, List<Contenedor> contLst, String descripcion, String destino, Date fecha) throws BussinesException;
 
-    public void removePartida(Partida partida) throws BussinesException;
-    
-    public Partida obtenerPartida(String codigo) throws BussinesException;
-    
-    public void modifyPartida(Partida partida) throws BussinesException;    
+    public List<Partida> generarReportePartidasMes(int mes) throws BussinesException;
 
-    public List<Partida> listPartidas() throws BussinesException;
+    public List<Partida> generarReportePartidasMesBarco(int mes, String codigoBarco) throws BussinesException;
 }

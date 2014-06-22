@@ -60,4 +60,17 @@ public class ArriboDaoImpl extends ObjectDaoImpl<Arribo> implements ArriboDao {
         }
         return !resultado.isEmpty();
     }
+
+    @Override
+    public Boolean tieneArriboBarco(long idBarco) throws DaoException {
+        List<Arribo> resultado;
+        try {
+             SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd");
+              
+            resultado = hibernateTemplate.find("from Arribo where fecha <=current_date and barco.id="+idBarco);
+        } catch (Exception he) {
+            throw new DaoException(he.getMessage());
+        }
+        return !resultado.isEmpty();
+    }
 }

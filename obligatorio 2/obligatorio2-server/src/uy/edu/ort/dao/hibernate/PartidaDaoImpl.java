@@ -21,7 +21,7 @@ public class PartidaDaoImpl extends ObjectDaoImpl<Partida> implements PartidaDao
     public List<Contenedor> getContenedoresDePartidasFecha(Date d) throws DaoException {
         try {
             SimpleDateFormat dt1 = new SimpleDateFormat("dd-MM-yyyy");
-            List<Contenedor> c = hibernateTemplate.find("select a "
+            List<Contenedor> c = hibernateTemplate.find("select p "
                     + "from Partida p "
                     + "left join p.contenedores as cont where p.fecha =" + dt1.format(d));
             if (c != null) {

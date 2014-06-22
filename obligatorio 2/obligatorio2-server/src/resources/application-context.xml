@@ -40,6 +40,15 @@
     
     <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
         <!-- puede tener cualquier nombre-->
+        <property name="serviceName" value="PartidaServiceExported" />
+        <property name="service" ref="partidaService" />
+        <property name="serviceInterface" value="uy.edu.ort.service.PartidaService" />
+        <!-- default 1099 -->
+        <property name="registryPort" value="1199" />
+    </bean>
+    
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <!-- puede tener cualquier nombre-->
         <property name="serviceName" value="ProfilingServiceExported" />
         <property name="service" ref="profilingService" />
         <property name="serviceInterface" value="uy.edu.ort.service.ProfilingService" />
@@ -63,6 +72,11 @@
         <property name="arriboDao" ref="arriboDao"/>
     </bean>
     
+    <bean id="partidaService" class="uy.edu.ort.service.impl.PartidaServiceImpl" >
+        <property name="partidaDao" ref="partidaDao"/>
+        <property name="arriboDao" ref="arriboDao"/>
+    </bean>
+    
     <bean id="barcoService" class="uy.edu.ort.service.impl.BarcoServiceImpl" >
         <property name="arriboDao" ref="arriboDao"/>
         <property name="barcoDao" ref="barcoDao"/>
@@ -77,6 +91,10 @@
     </bean>
     
     <bean id="arriboDao" class="uy.edu.ort.dao.hibernate.ArriboDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
+    
+    <bean id="partidaDao" class="uy.edu.ort.dao.hibernate.PartidaDaoImpl">
         <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
     

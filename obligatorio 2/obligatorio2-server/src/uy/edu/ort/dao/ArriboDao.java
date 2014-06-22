@@ -21,4 +21,6 @@ public interface ArriboDao extends ObjetoDao<Arribo>{
     public List<Arribo> getArribosEnMes(int mes, String codigoBarco) throws DaoException;
     
     public Boolean getArriboBarcoHoy(long idBarco) throws DaoException;
+    
+    public Boolean tieneArriboBarco(long idBarco) throws DaoException;
 }

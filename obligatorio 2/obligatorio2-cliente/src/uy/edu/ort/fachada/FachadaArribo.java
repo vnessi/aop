@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -69,7 +70,7 @@ public class FachadaArribo {
             String fechaString = new SimpleDateFormat("dd-MM-yyyy").format(arribo.getFecha());
             String codigoConts = "";
             for (Object c : arribo.getContenedores()) {
-                codigoConts += " - " + ((Contenedor)c).getCodigo();
+                codigoConts += " - " + ((LinkedHashMap)c).get("codigo");
             }
             codigoConts += " - ";
             System.out.println("\t" + arribo.getId() + "\t\t" + arribo.getOrigen() +
@@ -77,7 +78,7 @@ public class FachadaArribo {
                 " \t\t" + arribo.getBarco().getCodigo() + " \t\t" + codigoConts);
 
         }
-        PdfUtil.crearReportePDFMes(arribosResultado, mes);
+        //PdfUtil.crearReportePDFMes(arribosResultado, mes);
     }
     
     public static void generarReporteArribosMesBarco(String mes, String idBarco) {
@@ -94,8 +95,9 @@ public class FachadaArribo {
             String codigoConts = "";
             int peso = 0;
             for (Object c : arribo.getContenedores()) {
-                codigoConts += " - " + ((Contenedor)c).getCodigo();
-                peso += ((Contenedor) c).getCapacidad();
+                codigoConts += " - " + ((LinkedHashMap)c).get("codigo");
+                Object capacidad = ((LinkedHashMap)c).get("capacidad");
+                peso += (Integer)capacidad;
             }
             codigoConts += " - ";
             System.out.println("\t" + arribo.getId() + "\t\t" + arribo.getOrigen() +
@@ -104,7 +106,7 @@ public class FachadaArribo {
 
 
         }
-        PdfUtil.crearReportePDFMesBarco(arribosResultado, mes, idBarco);
+        //PdfUtil.crearReportePDFMesBarco(arribosResultado, mes, idBarco);
     }
 
     private static Date obtenerFechaDesdeString(String dateInString) {

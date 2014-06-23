@@ -35,7 +35,7 @@ public class ContenedorServiceImplTest {
     public void testContenedorService() throws Exception {
         System.out.println("ContenedorService");
         
-        int conts = instance.listContenedors().size();
+        int conts = instance.listContenedores().size();
         Contenedor contenedor = new Contenedor();
         contenedor.setCapacidad(22);
         contenedor.setCodigo("testCode");
@@ -43,11 +43,11 @@ public class ContenedorServiceImplTest {
         contenedor.setModelo("Thunder");
         instance.addContenedor(contenedor);
         
-        assertEquals(conts + 1, instance.listContenedors().size());
+        assertEquals(conts + 1, instance.listContenedores().size());
         
         instance.removeContenedor(contenedor);
         
-        assertEquals(conts, instance.listContenedors().size());
+        assertEquals(conts, instance.listContenedores().size());
     }
 
 }

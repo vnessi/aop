@@ -53,17 +53,16 @@ public class BarcoController {
     
     @RequestMapping(value = "/agregarBarco", method = RequestMethod.POST)
     public String agregarBarco(Barco barco, BindingResult result) {
-        if (!barco.getCodigo().equals("")) {
+        if (!barco.getCodigo().equals("") && !barco.getNombre().equals("") && !barco.getBandera().equals("")) {
             try {
                 this.barcoService.addBarco(barco);
             } catch (BussinesException ex) {
                 Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            //return "redirect:list.htm";
-            return "viewBarco";
+            return "redirect:listBarcos.htm";
         } else {
-            result.reject("", "El code no puede ser vacio");
+            result.reject("", "Hay un error en los campos ingresados");
             return "formBarco";
         }
     }
@@ -81,10 +80,15 @@ public class BarcoController {
         return "editBarco";
     }
 
-    @RequestMapping(value = "/modificar", method = RequestMethod.POST)
+    @RequestMapping(value = "/modificarBarco", method = RequestMethod.POST)
     public String modificar(Barco barco, BindingResult result) {
-        //modificar usuario        
-        return "viewBarco";
+        try {
+            //modificar usuario
+            barcoService.modifyBarco(barco);
+        } catch (BussinesException ex) {
+            Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "redirect:listBarcos.htm";
     }
     
     

@@ -8,28 +8,30 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Detalle Barco</title>
+        <title>Editar Barco</title>
     </head>
     <body>
         <div>
             <div>
-                <form:form modelAttribute="barco" action="listBarcos.htm" method="get">
+                <form:form modelAttribute="barco" action="modificarBarco.htm" method="post">
+                    <form:errors path="*" />
                     <fieldset>
                         <legend>Campos Barco</legend>
                         <p>
+                            <form:hidden path="id" />
                             <form:label for="code" path="code">code</form:label><br/>
-                            <form:input path="code" disabled="true" />
+                            <form:input path="code" />
                         </p>
                         <p>
                             <form:label for="name" path="name">name</form:label><br/>
-                            <form:input path="name" disabled="true" />
+                            <form:input path="name" />
                         </p>
                         <p>
-                            <input type="submit" value="Volver" />
+                            <input type="submit" value="Modificar Barco" />
                         </p>
                     </fieldset>
                 </form:form>
-            </div>            
+            </div>             
         </div>
     </body>
 </html>

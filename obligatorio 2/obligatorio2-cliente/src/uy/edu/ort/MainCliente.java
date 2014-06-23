@@ -4,9 +4,6 @@ import uy.edu.ort.fachada.FachadaBarco;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
 import uy.edu.ort.fachada.FachadaArribo;
 import uy.edu.ort.fachada.FachadaContenedor;
 import uy.edu.ort.fachada.FachadaProfiling;
@@ -120,6 +117,20 @@ public class MainCliente {
                         System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
                     }
                     break;
+                    
+                case "4.1":
+                    System.out.println(">>Mostrar Barco\n");
+                    System.out.println(">>Ingrese el id del barco que desea mostrar: \n");
+                    System.out.print(">> ");
+                    String idBarco = bufferedReader.readLine();
+                        try {
+                            if (checkArgs(idBarco)) {
+                                FachadaBarco.mostrarBarco(idBarco);
+                            }
+                        } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
 
                 case "5":
                     System.out.println(">>Agregar Contenedor: "
@@ -180,6 +191,20 @@ public class MainCliente {
                         System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
                     }
                     break;
+                    
+                case "8.1":
+                    System.out.println(">>Mostrar Contenedor\n");
+                    System.out.println(">>Ingrese el id del contenedor que desea mostrar: \n");
+                    System.out.print(">> ");
+                    String idContenedor = bufferedReader.readLine();
+                        try {
+                            if (checkArgs(idContenedor)) {
+                                FachadaContenedor.mostrarContenedor(idContenedor);
+                            }
+                        } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
 
                 case "9":
                     System.out.println(">>Registrar Arribo: \n"
@@ -200,7 +225,7 @@ public class MainCliente {
                     break;
 
                 case "10":
-                    System.out.println(">>Generar Reporte: \n"
+                    System.out.println(">>Generar Reporte de arribos por Mes: \n"
                             + "\nIngrese el mes para el cual desea generar el reporte \n");
                     System.out.print(">> ");
                     arg = bufferedReader.readLine();
@@ -214,7 +239,7 @@ public class MainCliente {
                     break;
 
                 case "11":
-                    System.out.println(">>Generar Reporte: \n"
+                    System.out.println(">>Generar Reporte de arribos por Mes y Barcos: \n"
                             + "\nIngrese el mes para el cual desea generar el reporte \n");
                     System.out.print(">> ");
                     arg = bufferedReader.readLine();

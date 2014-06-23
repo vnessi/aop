@@ -72,17 +72,19 @@ public class FachadaBarco {
     }
 
     public static void mostrarBarco(String codigo) {
-        try {
-            Barco barco = barcoDao.obtenerBarco(codigo);
-            System.out.println("\tId \t\tCodigo \t\tNombre \t\tBandera \t\tCapacidad(kgs) \t\tAño \t\tCantidadTripulantes");
-            System.out.println("\t" + barco.getId() + "\t\t" + barco.getCodigo()
-                    + " \t\t" + barco.getNombre() + " \t\t" + barco.getBandera()
-                    + " \t\t" + barco.getCapacidadTransporte() + " \t\t" + String.valueOf(barco.getAnioFabricacion())
-                    + " \t\t" + barco.getCantidadTripulantes());
-        } catch (BussinesException ex) {
-            Logger.getLogger(FachadaBarco.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restbarco/" + codigo + ".htm";
+        RestTemplate restTemplate = new RestTemplate();
 
+        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+
+        Barco barco = restTemplate.getForObject(url, Barco.class);
+        System.out.println("\tId \t\tCodigo \t\tNombre \t\tBandera \t\tCapacidad(kgs) \t\tAño \t\tCantidadTripulantes");
+        System.out.println("\t" + barco.getId() + "\t\t" + barco.getCodigo()
+                + " \t\t" + barco.getNombre() + " \t\t" + barco.getBandera()
+                + " \t\t" + barco.getCapacidadTransporte() + " \t\t" + String.valueOf(barco.getAnioFabricacion())
+                + " \t\t" + barco.getCantidadTripulantes());
+        
     }
 
     public static void listarBarcos() {

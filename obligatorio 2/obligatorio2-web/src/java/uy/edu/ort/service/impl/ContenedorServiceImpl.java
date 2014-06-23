@@ -67,9 +67,9 @@ public class ContenedorServiceImpl implements ContenedorService{
     
     @Transactional
     @Override
-    public Contenedor obtenerContenedor(String codigo) throws BussinesException {
+    public Contenedor obtenerContenedor(String id) throws BussinesException {
         try {
-            return contenedorDao.obtenerPorPropiedad("codigo", codigo).get(0);
+            return contenedorDao.obtenerPorPropiedad("id", id).get(0);
         } catch (GenericException ex) {
             Logger.getLogger(ContenedorServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             throw new BussinesException("Error al acceder la Base de Datos");

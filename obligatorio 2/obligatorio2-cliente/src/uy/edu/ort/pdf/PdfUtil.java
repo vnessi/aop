@@ -28,7 +28,7 @@ public class PdfUtil {
     private static String FILEMESBARCO = "ReporteMesBarco.pdf";
     private static String FILEPROFILING = "Profiling.pdf";
     
-    public static void crearReportePDFMes(List<Arribo> arribos, String mes) {
+    public static void crearReportePDFMes(Arribo[] arribos, String mes) {
         try {
             Document document = new Document();
             try {
@@ -47,7 +47,7 @@ public class PdfUtil {
         }
     }
     
-    public static void crearReportePDFMesBarco(List<Arribo> arribos, String mes, String codBarco) {
+    public static void crearReportePDFMesBarco(Arribo[] arribos, String mes, String codBarco) {
         try {
             Document document = new Document();
             try {
@@ -96,7 +96,7 @@ public class PdfUtil {
         }
     }
 
-    private static PdfPTable crearTablaArribos(List<Arribo> arribos) {
+    private static PdfPTable crearTablaArribos(Arribo[] arribos) {
         // a table with three columns
         PdfPTable table = new PdfPTable(6);
         table.addCell("ID");
@@ -124,7 +124,7 @@ public class PdfUtil {
         return table;
     }
     
-    private static PdfPTable crearTablaArribosBarcos(List<Arribo> arribos) {
+    private static PdfPTable crearTablaArribosBarcos(Arribo[] arribos) {
         // a table with three columns
         PdfPTable table = new PdfPTable(7);
         table.addCell("ID");

@@ -26,12 +26,12 @@ import uy.edu.ort.service.ContenedorService;
  * @author Victor Nessi - Bruno Montaner
  */
 @Controller
-@RequestMapping(value = "/rest")
+@RequestMapping(value = "/rest/contenedor")
 public class RestContenedorController {
     @Autowired
     private ContenedorService contenedorService;
 
-    @RequestMapping(value = "/contenedor/{idContenedor}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{idContenedor}", method = RequestMethod.GET)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
     public Contenedor getContenedor(@PathVariable("idContenedor") long id) {
@@ -44,7 +44,7 @@ public class RestContenedorController {
         return null;
     }
 
-    @RequestMapping(value = "/contenedor/contenedores", method = RequestMethod.GET)
+    @RequestMapping(value = "/contenedores", method = RequestMethod.GET)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
     public List<Contenedor> getContenedors() {

@@ -9,10 +9,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 import uy.edu.ort.model.Arribo;
 import uy.edu.ort.model.Barco;
 import uy.edu.ort.model.Contenedor;
 import uy.edu.ort.pdf.PdfUtil;
+import uy.edu.ort.propiedades.ManejoPropiedades;
 import uy.edu.ort.service.ArriboService;
 import uy.edu.ort.service.BarcoService;
 import uy.edu.ort.service.BussinesException;
@@ -52,50 +56,55 @@ public class FachadaArribo {
     }
     
     public static void generarReporteArribosMes(String mes) {
-        try {
-            List<Arribo> arribosResultado = arriboDao.generarReporteArribosMes(Integer.valueOf(mes));
-            System.out.println("\tId \t\tOrigen \t\tFecha \t\tDescripcion \t\tBarco \t\tContenedores");
-            for (Arribo arribo : arribosResultado) {
-                String fechaString = new SimpleDateFormat("dd-MM-yyyy").format(arribo.getFecha());
-                String codigoConts = "";
-                for (Object c : arribo.getContenedores()) {
-                    codigoConts += " - " + ((Contenedor)c).getCodigo();
-                }
-                codigoConts += " - ";
-                System.out.println("\t" + arribo.getId() + "\t\t" + arribo.getOrigen() +
-                    " \t\t" + fechaString + " \t\t" + arribo.getDescripcion() +
-                    " \t\t" + arribo.getBarco().getCodigo() + " \t\t" + codigoConts);
-                
+        String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restarribo/arribos.htm?mes=" + mes;
+        RestTemplate restTemplate = new RestTemplate();
+
+        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+
+        Arribo[] arribosResultado = restTemplate.getForObject(url, Arribo[].class);
+        //List<Arribo> arribosResultado = arriboDao.generarReporteArribosMes(Integer.valueOf(mes));
+        System.out.println("\tId \t\tOrigen \t\tFecha \t\tDescripcion \t\tBarco \t\tContenedores");
+        for (Arribo arribo : arribosResultado) {
+            String fechaString = new SimpleDateFormat("dd-MM-yyyy").format(arribo.getFecha());
+            String codigoConts = "";
+            for (Object c : arribo.getContenedores()) {
+                codigoConts += " - " + ((Contenedor)c).getCodigo();
             }
-            PdfUtil.crearReportePDFMes(arribosResultado, mes);
-        } catch (BussinesException ex) {
-            Logger.getLogger(FachadaArribo.class.getName()).log(Level.SEVERE, null, ex);
+            codigoConts += " - ";
+            System.out.println("\t" + arribo.getId() + "\t\t" + arribo.getOrigen() +
+                " \t\t" + fechaString + " \t\t" + arribo.getDescripcion() +
+                " \t\t" + arribo.getBarco().getCodigo() + " \t\t" + codigoConts);
+
         }
+        PdfUtil.crearReportePDFMes(arribosResultado, mes);
     }
     
-    public static void generarReporteArribosMesBarco(String mes, String codigoBarco) {
-        try {
-            List<Arribo> arribosResultado = arriboDao.generarReporteArribosMes(Integer.valueOf(mes));
-            System.out.println("\tId \t\tOrigen \t\tFecha \t\tDescripcion \t\tBarco \t\tContenedores \t\tPeso Total");
-            for (Arribo arribo : arribosResultado) {
-                String fechaString = new SimpleDateFormat("dd-MM-yyyy").format(arribo.getFecha());
-                String codigoConts = "";
-                int peso = 0;
-                for (Object c : arribo.getContenedores()) {
-                    codigoConts += " - " + ((Contenedor)c).getCodigo();
-                    peso += ((Contenedor) c).getCapacidad();
-                }
-                codigoConts += " - ";
-                System.out.println("\t" + arribo.getId() + "\t\t" + arribo.getOrigen() +
-                    " \t\t" + fechaString + " \t\t" + arribo.getDescripcion() +
-                    " \t\t" + arribo.getBarco().getCodigo() + " \t\t" + codigoConts + " \t\t" + peso);
-                        
-                
+    public static void generarReporteArribosMesBarco(String mes, String idBarco) {
+        String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restarribo/arribos.htm?mes=" + mes + "&idBarco=" + idBarco;
+        RestTemplate restTemplate = new RestTemplate();
+
+        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+
+        Arribo[] arribosResultado = restTemplate.getForObject(url, Arribo[].class);
+        System.out.println("\tId \t\tOrigen \t\tFecha \t\tDescripcion \t\tBarco \t\tContenedores \t\tPeso Total");
+        for (Arribo arribo : arribosResultado) {
+            String fechaString = new SimpleDateFormat("dd-MM-yyyy").format(arribo.getFecha());
+            String codigoConts = "";
+            int peso = 0;
+            for (Object c : arribo.getContenedores()) {
+                codigoConts += " - " + ((Contenedor)c).getCodigo();
+                peso += ((Contenedor) c).getCapacidad();
             }
-            PdfUtil.crearReportePDFMesBarco(arribosResultado, mes, codigoBarco);
-        } catch (BussinesException ex) {
-            Logger.getLogger(FachadaArribo.class.getName()).log(Level.SEVERE, null, ex);
+            codigoConts += " - ";
+            System.out.println("\t" + arribo.getId() + "\t\t" + arribo.getOrigen() +
+                " \t\t" + fechaString + " \t\t" + arribo.getDescripcion() +
+                " \t\t" + arribo.getBarco().getCodigo() + " \t\t" + codigoConts + " \t\t" + peso);
+
+
         }
+        PdfUtil.crearReportePDFMesBarco(arribosResultado, mes, idBarco);
     }
 
     private static Date obtenerFechaDesdeString(String dateInString) {

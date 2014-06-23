@@ -3,9 +3,12 @@ package uy.edu.ort.fachada;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 import uy.edu.ort.model.Contenedor;
+import uy.edu.ort.propiedades.ManejoPropiedades;
 import uy.edu.ort.service.BussinesException;
 import uy.edu.ort.service.ContenedorService;
 
@@ -16,8 +19,9 @@ import uy.edu.ort.service.ContenedorService;
  * Fachada con las operaciones relacionada con el objeto Contenedor
  */
 public class FachadaContenedor {
-    private static final ApplicationContext ctx = new ClassPathXmlApplicationContext("resources/application-context.xml");
-    private static final ContenedorService contenedorDao = (ContenedorService) ctx.getBean("contenedorService");
+    
+    @Autowired
+    private static ContenedorService contenedorDao;
     
     public static void agregarContenedor(String argumentos) {
         try {
@@ -65,29 +69,33 @@ public class FachadaContenedor {
     }
     
     public static void mostrarContenedor(String codigo) {
-        try {
-            Contenedor c = contenedorDao.obtenerContenedor(codigo);
+        String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restcontenedor/" + codigo + ".htm";
+        RestTemplate restTemplate = new RestTemplate();
+
+        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+
+        Contenedor c = restTemplate.getForObject(url, Contenedor.class);
             System.out.println("\tId \t\tCodigo \t\tMarca \t\tModelo \t\tCapacidad(kgs)");
             System.out.println("\t" + String.valueOf(c.getId()) + "\t\t" + c.getCodigo() 
                     + " \t\t" + c.getMarca()+ " \t\t" + c.getModelo()  
                     + " \t\t" + String.valueOf(c.getCapacidad()));
-        } catch (BussinesException ex) {
-            Logger.getLogger(FachadaBarco.class.getName()).log(Level.SEVERE, null, ex);
-        }
             
     }
     
     public static void listarContenedores() {
-        try {
-            List<Contenedor> contenedores = contenedorDao.listContenedores();
-             System.out.println("\tId \t\tCodigo \t\tMarca \t\tModelo \t\tCapacidad(kgs)");
-            for (Contenedor c : contenedores) {
-                System.out.println("\t" + c.getId() + "\t\t" + c.getCodigo() +
-                    " \t\t" + c.getMarca()+ " \t\t" + c.getModelo() +
-                        "\t\t" + String.valueOf(c.getCapacidad()));
-            }
-        } catch (BussinesException ex) {
-            Logger.getLogger(FachadaBarco.class.getName()).log(Level.SEVERE, null, ex);
+        String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restcontenedor/contenedores.htm";
+        RestTemplate restTemplate = new RestTemplate();
+
+        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+
+        Contenedor[] contenedores = restTemplate.getForObject(url, Contenedor[].class);
+        System.out.println("\tId \t\tCodigo \t\tMarca \t\tModelo \t\tCapacidad(kgs)");
+        for (Contenedor c : contenedores) {
+            System.out.println("\t" + c.getId() + "\t\t" + c.getCodigo() +
+                " \t\t" + c.getMarca()+ " \t\t" + c.getModelo() +
+                    "\t\t" + String.valueOf(c.getCapacidad()));
         }
     }
 }

@@ -36,7 +36,7 @@ public class ContenedorController {
         List<Contenedor> contenedors = null;
         
          try {
-             contenedors = this.contenedorService.listContenedors();
+             contenedors = this.contenedorService.listContenedores();
          } catch (BussinesException ex) {
              Logger.getLogger(ContenedorController.class.getName()).log(Level.SEVERE, null, ex);
          }

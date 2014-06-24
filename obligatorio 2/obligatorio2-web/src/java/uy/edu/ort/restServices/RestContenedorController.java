@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package uy.edu.ort.controller;
+package uy.edu.ort.restServices;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -17,46 +17,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import uy.edu.ort.model.Barco;
-import uy.edu.ort.service.BarcoService;
+import uy.edu.ort.model.Contenedor;
 import uy.edu.ort.service.BussinesException;
+import uy.edu.ort.service.ContenedorService;
 
 /**
  *
  * @author Victor Nessi - Bruno Montaner
  */
 @Controller
-@RequestMapping(value = "/rest")
-public class RestBarcoController {
-    
+@RequestMapping(value = "/rest/contenedor")
+public class RestContenedorController {
     @Autowired
-    private BarcoService barcoService;
+    private ContenedorService contenedorService;
 
-    @RequestMapping(value = "/barco/{idBarco}", method = RequestMethod.GET,
-            headers = "Accept=application/json, application/xml")
+    @RequestMapping(value = "/{idContenedor}", method = RequestMethod.GET)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
-    public Barco getBarco(@PathVariable("idBarco") long id) {
+    public Contenedor getContenedor(@PathVariable("idContenedor") long id) {
         try {
-            Barco barco = barcoService.obtenerBarco(String.valueOf(id));
-            return barco;
+            Contenedor contenedor = contenedorService.obtenerContenedor(String.valueOf(id));
+            return contenedor;
         } catch (BussinesException ex) {
-            Logger.getLogger(RestBarcoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RestContenedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
-    @RequestMapping(value = "/barcos.json", method = RequestMethod.GET,
-            headers = "Accept=application/json, application/xml")
+    @RequestMapping(value = "/contenedores", method = RequestMethod.GET)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.OK)
-    public List<Barco> getBarcos() {
-        List<Barco> barcos = null;
+    public List<Contenedor> getContenedors() {
+        List<Contenedor> contenedores = null;
         try {
-            barcos = barcoService.listBarcos();
+            contenedores = contenedorService.listContenedores();
         } catch (BussinesException ex) {
-            Logger.getLogger(RestBarcoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RestContenedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return barcos;
+        return contenedores;
     }
 }

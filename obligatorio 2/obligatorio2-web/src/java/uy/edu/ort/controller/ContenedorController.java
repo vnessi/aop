@@ -32,15 +32,15 @@ public class ContenedorController {
     private ContenedorService contenedorService;
 
     @RequestMapping(value = "/listContenedores", method = RequestMethod.GET)
-    public String listContenedores(Model model) {
-        List<Contenedor> contenedores = null;
+    public String listContenedors(Model model) {
+        List<Contenedor> contenedors = null;
         
          try {
-             contenedores = this.contenedorService.listContenedors();
+             contenedors = this.contenedorService.listContenedors();
          } catch (BussinesException ex) {
              Logger.getLogger(ContenedorController.class.getName()).log(Level.SEVERE, null, ex);
          }
-        model.addAttribute("contenedores", contenedores);
+        model.addAttribute("contenedores", contenedors);
         return "listContenedores";
     }
     
@@ -53,17 +53,16 @@ public class ContenedorController {
     
     @RequestMapping(value = "/agregarContenedor", method = RequestMethod.POST)
     public String agregarContenedor(Contenedor contenedor, BindingResult result) {
-        if (!contenedor.getCodigo().equals("")) {
+        if (!contenedor.getCodigo().equals("") && !contenedor.getMarca().equals("") && !contenedor.getModelo().equals("")) {
             try {
                 this.contenedorService.addContenedor(contenedor);
             } catch (BussinesException ex) {
                 Logger.getLogger(ContenedorController.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-            //return "redirect:list.htm";
-            return "viewContenedor";
+            return "redirect:listContenedores.htm";
         } else {
-            result.reject("", "El code no puede ser vacio");
+            result.reject("", "Hay un error en los campos ingresados");
             return "formContenedor";
         }
     }
@@ -81,10 +80,15 @@ public class ContenedorController {
         return "editContenedor";
     }
 
-    @RequestMapping(value = "/modificar", method = RequestMethod.POST)
+    @RequestMapping(value = "/modificarContenedor", method = RequestMethod.POST)
     public String modificar(Contenedor contenedor, BindingResult result) {
-        //modificar usuario        
-        return "viewContenedor";
+        try {
+            //modificar usuario
+            contenedorService.modifyContenedor(contenedor);
+        } catch (BussinesException ex) {
+            Logger.getLogger(ContenedorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "redirect:listContenedores.htm";
     }
     
     

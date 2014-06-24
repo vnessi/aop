@@ -9,31 +9,6 @@
           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="arriboService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
-        <property name="serviceUrl" value="rmi://localhost:1199/ArriboServiceExported" />
-        <property name="serviceInterface" value="uy.edu.ort.service.ArriboService" />
-    </bean>
-    
-    <bean id="barcoService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
-        <property name="serviceUrl" value="rmi://localhost:1199/BarcoServiceExported" />
-        <property name="serviceInterface" value="uy.edu.ort.service.BarcoService" />
-    </bean>
-    
-    <bean id="contenedorService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
-        <property name="serviceUrl" value="rmi://localhost:1199/ContenedorServiceExported" />
-        <property name="serviceInterface" value="uy.edu.ort.service.ContenedorService" />
-    </bean>
-    
-    <bean id="usernameService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
-        <property name="serviceUrl" value="rmi://localhost:1199/UsernameServiceExported" />
-        <property name="serviceInterface" value="uy.edu.ort.service.UsernameService" />
-    </bean>
-    
-    <bean id="profilingService" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
-        <property name="serviceUrl" value="rmi://localhost:1199/ProfilingServiceExported" />
-        <property name="serviceInterface" value="uy.edu.ort.service.ProfilingService" />
-    </bean>
-    
     <bean id="restTemplate"
           class="org.springframework.web.client.RestTemplate">
         <property name="messageConverters">

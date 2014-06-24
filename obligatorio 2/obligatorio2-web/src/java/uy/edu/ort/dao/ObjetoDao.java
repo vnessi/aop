@@ -27,7 +27,7 @@ public interface ObjetoDao <T> {
      */
     
     
-    void modificar(T entity) throws GenericException;
+    //void modificar(long id, T entity) throws GenericException;
     
     void borrar(T entity) throws GenericException;
 	/**

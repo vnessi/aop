@@ -18,7 +18,7 @@ public interface BarcoService {
     
     public Barco obtenerBarco(String codigo) throws BussinesException;
     
-    public void modifyBarco(Barco barco) throws BussinesException;    
+    public void modifyBarco(long id, Barco barco) throws BussinesException;    
 
     public List<Barco> listBarcos() throws BussinesException;
 }

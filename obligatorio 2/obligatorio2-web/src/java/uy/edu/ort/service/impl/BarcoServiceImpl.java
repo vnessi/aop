@@ -54,19 +54,21 @@ public class BarcoServiceImpl implements BarcoService {
 
     @Transactional
     @Override
-    public void modifyBarco(Barco barco) throws BussinesException {
+    public void modifyBarco(long id, Barco barco) throws BussinesException {
         try {
-            Barco barcoBD = barcoDao.obtenerPorPK(barco);
+            Barco barcoBD = barcoDao.obtenerPorPropiedad("id", id).get(0);
             if(barcoBD != null && barcoBD.getCapacidadTransporte() != barco.getCapacidadTransporte()){
                 if (!arriboDao.getArriboBarcoHoy(barco.getId())) {
                     throw new BussinesException("No se puede modificar la Capacidad de transporte de un Barco, si no\n" +
                     "arribo a puerto ese día.");
                 }
             }
-            barcoDao.modificar(barco);
+            barcoDao.modificar(id, barco);
         } catch (GenericException ex) {
             Logger.getLogger(BarcoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             throw new BussinesException("Error al acceder la Base de Datos");
+        } catch (Exception ex) {
+            Logger.getLogger(BarcoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -46,12 +46,11 @@ public class ContenedorServiceImpl implements ContenedorService{
     }
     @Transactional 
     @Override
-    public void modifyContenedor(Contenedor contenedor) throws BussinesException {
+    public void modifyContenedor(long id, Contenedor contenedor) throws BussinesException {
         try {
-            contenedorDao.modificar(contenedor);
-        } catch (GenericException ex) {
+            contenedorDao.modificar(id, contenedor);
+        } catch (Exception ex) {
             Logger.getLogger(ContenedorServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
-            throw new BussinesException("Error al acceder la Base de Datos");
         }
     }
     @Transactional

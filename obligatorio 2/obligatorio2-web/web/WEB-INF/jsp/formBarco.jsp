@@ -43,6 +43,7 @@
                     <fieldset>
                         <legend>Campos Barco</legend>
                         <div class="form-group">
+                            
                             <form:label for="codigo" path="codigo" class="col-lg-2 control-label">Codigo</form:label>
                             
                             <div class="col-lg-10">

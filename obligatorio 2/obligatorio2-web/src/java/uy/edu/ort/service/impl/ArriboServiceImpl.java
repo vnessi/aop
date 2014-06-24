@@ -86,10 +86,10 @@ public class ArriboServiceImpl implements ArriboService {
     }
     @Transactional
     @Override
-    public List<Arribo> generarReporteArribosMesBarco(int mes, String codigoBarco) throws BussinesException {
+    public List<Arribo> generarReporteArribosMesBarco(int mes, String idBarco) throws BussinesException {
 
         try {
-            return arriboDAO.getArribosEnMes(mes, codigoBarco);
+            return arriboDAO.getArribosEnMes(mes, idBarco);
         } catch (DaoException ex) {
             Logger.getLogger(ArriboServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             throw new BussinesException("Error al acceder la Base de Datos");

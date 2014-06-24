@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import uy.edu.ort.dao.ArriboDao;
 import uy.edu.ort.dao.DaoException;
+import uy.edu.ort.exception.GenericException;
 import uy.edu.ort.model.Arribo;
 import uy.edu.ort.model.Contenedor;
 
@@ -73,4 +74,5 @@ public class ArriboDaoImpl extends ObjectDaoImpl<Arribo> implements ArriboDao {
         }
         return !resultado.isEmpty();
     }
+
 }

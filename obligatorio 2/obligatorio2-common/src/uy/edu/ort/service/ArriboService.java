@@ -18,5 +18,5 @@ public interface ArriboService {
 
     public List<Arribo> generarReporteArribosMes(int mes) throws BussinesException;
 
-    public List<Arribo> generarReporteArribosMesBarco(int mes, String codigoBarco) throws BussinesException;
+    public List<Arribo> generarReporteArribosMesBarco(int mes, String idBarco) throws BussinesException;
 }

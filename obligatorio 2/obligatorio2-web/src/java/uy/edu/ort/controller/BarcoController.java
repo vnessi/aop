@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import uy.edu.ort.model.Barco;
 import uy.edu.ort.service.BarcoService;
 import uy.edu.ort.service.BussinesException;
@@ -82,9 +83,9 @@ public class BarcoController {
     }
 
     @RequestMapping(value = "/modificarBarco", method = RequestMethod.POST)
-    public String modificar(Barco barco, BindingResult result) {
+    public String modificar(@RequestParam("id") long id, Barco barco, BindingResult result) {
         try {
-            barcoService.modifyBarco(barco);
+            barcoService.modifyBarco(id, barco);
         } catch (BussinesException ex) {
             Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
         }

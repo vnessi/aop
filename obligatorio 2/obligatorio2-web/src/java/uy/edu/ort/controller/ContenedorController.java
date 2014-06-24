@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import uy.edu.ort.model.Barco;
 import uy.edu.ort.model.Contenedor;
 import uy.edu.ort.service.ContenedorService;
@@ -82,10 +83,10 @@ public class ContenedorController {
     }
 
     @RequestMapping(value = "/modificarContenedor", method = RequestMethod.POST)
-    public String modificar(Contenedor contenedor, BindingResult result) {
+    public String modificar(@RequestParam("id") long id, Contenedor contenedor, BindingResult result) {
         try {
             //modificar usuario
-            contenedorService.modifyContenedor(contenedor);
+            contenedorService.modifyContenedor(id, contenedor);
         } catch (BussinesException ex) {
             Logger.getLogger(ContenedorController.class.getName()).log(Level.SEVERE, null, ex);
         }

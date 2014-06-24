@@ -38,17 +38,17 @@ public class ObjectDaoImpl<T> implements ObjetoDao<T> {
         hibernateTemplate.save(entity);
     }
     
-    @Override
-    public void modificar(T entity) throws GenericException{
-        try{
-        entity = (T) hibernateTemplate.get(entity.getClass(), ((EntidadPersistente)entity).getId());
-        
-        hibernateTemplate.save(entity);
-        hibernateTemplate.flush();
-        }catch(DataAccessException ex){
-            throw new GenericException(ex.getMessage());
-        }
-    }
+//    @Override
+//    public void modificar(long id, T entity) throws GenericException{
+//        try{
+//        entity = (T) hibernateTemplate.get(entity.getClass(), ((EntidadPersistente)entity).getId());
+//        
+//        hibernateTemplate.save(entity);
+//        hibernateTemplate.flush();
+//        }catch(DataAccessException ex){
+//            throw new GenericException(ex.getMessage());
+//        }
+//    }
 
     @Override
     public void borrar(T entity) {

@@ -18,60 +18,6 @@
     
     <tx:annotation-driven transaction-manager="transactionManager"/>    
     
-    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
-        <!-- puede tener cualquier nombre-->
-        <property name="serviceName" value="BarcoServiceExported" />
-        <property name="service" ref="barcoService" />
-        <property name="serviceInterface" value="uy.edu.ort.service.BarcoService" />
-        <!-- default 1099 -->
-        <property name="registryPort" value="1199" />
-    </bean>
-    
-    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
-        <!-- puede tener cualquier nombre-->
-        <property name="serviceName" value="ContenedorServiceExported" />
-        <property name="service" ref="contenedorService" />
-        <property name="serviceInterface" value="uy.edu.ort.service.ContenedorService" />
-        <!-- default 1099 -->
-        <property name="registryPort" value="1199" />
-    </bean>
-    
-    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
-        <!-- puede tener cualquier nombre-->
-        <property name="serviceName" value="ArriboServiceExported" />
-        <property name="service" ref="arriboService" />
-        <property name="serviceInterface" value="uy.edu.ort.service.ArriboService" />
-        <!-- default 1099 -->
-        <property name="registryPort" value="1199" />
-    </bean>
-    
-    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
-        <!-- puede tener cualquier nombre-->
-        <property name="serviceName" value="PartidaServiceExported" />
-        <property name="service" ref="partidaService" />
-        <property name="serviceInterface" value="uy.edu.ort.service.PartidaService" />
-        <!-- default 1099 -->
-        <property name="registryPort" value="1199" />
-    </bean>
-    
-    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
-        <!-- puede tener cualquier nombre-->
-        <property name="serviceName" value="ProfilingServiceExported" />
-        <property name="service" ref="profilingService" />
-        <property name="serviceInterface" value="uy.edu.ort.service.ProfilingService" />
-        <!-- default 1099 -->
-        <property name="registryPort" value="1199" />
-    </bean>
-    
-    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
-        <!-- puede tener cualquier nombre-->
-        <property name="serviceName" value="UsernameServiceExported" />
-        <property name="service" ref="usernameService" />
-        <property name="serviceInterface" value="uy.edu.ort.service.UsernameService" />
-        <!-- default 1099 -->
-        <property name="registryPort" value="1199" />
-    </bean>
-    
     <bean id="usernameService" class="uy.edu.ort.service.impl.UsernameServiceImpl" >
     </bean>
     

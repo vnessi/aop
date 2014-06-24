@@ -9,8 +9,6 @@ package uy.edu.ort.fachada;
 import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import uy.edu.ort.model.Arribo;
 import uy.edu.ort.model.Barco;
@@ -73,10 +71,6 @@ public class FachadaOperaciones {
 
     public static void listarBarcos() {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restbarco/barcos.htm";
-        RestTemplate restTemplate = new RestTemplate();
-
-        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-        restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
         
         Barco[] barcos = restTemplate.getForObject(url, Barco[].class);
         System.out.println("\tId \t\tCodigo \t\tNombre \t\tBandera \t\tCapacidad(kgs) \t\tAño \t\tCantidadTripulantes");
@@ -94,11 +88,7 @@ public class FachadaOperaciones {
     
     public static void generarReporteArribosMes(String mes) {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restarribo/arribos.htm?mes=" + mes;
-        RestTemplate restTemplate = new RestTemplate();
-
-        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-        restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
-
+        
         Arribo[] arribosResultado = restTemplate.getForObject(url, Arribo[].class);
         System.out.println("\tId \t\tOrigen \t\tFecha \t\tDescripcion \t\tBarco \t\tContenedores");
         for (Arribo arribo : arribosResultado) {
@@ -117,11 +107,7 @@ public class FachadaOperaciones {
     
     public static void generarReporteArribosMesBarco(String mes, String idBarco) {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restarribo/arribos.htm?mes=" + mes + "&idBarco=" + idBarco;
-        RestTemplate restTemplate = new RestTemplate();
-
-        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-        restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
-
+        
         Arribo[] arribosResultado = restTemplate.getForObject(url, Arribo[].class);
         System.out.println("\tId \t\tOrigen \t\tFecha \t\tDescripcion \t\tBarco \t\tContenedores \t\tPeso Total");
         for (Arribo arribo : arribosResultado) {
@@ -147,11 +133,7 @@ public class FachadaOperaciones {
     
     public static void generarReportePartidasMes(String mes) {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restpartida/partidas.htm?mes=" + mes;
-        RestTemplate restTemplate = new RestTemplate();
-
-        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-        restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
-
+        
         Partida[] partidasResultado = restTemplate.getForObject(url, Partida[].class);
         System.out.println("\tId \t\tDestino \t\tFecha \t\tDescripcion \t\tBarco \t\tContenedores");
         for (Partida partida : partidasResultado) {
@@ -170,11 +152,7 @@ public class FachadaOperaciones {
     
     public static void generarReportePartidasMesBarco(String mes, String idBarco) {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restpartida/partidas.htm?mes=" + mes + "&idBarco=" + idBarco;
-        RestTemplate restTemplate = new RestTemplate();
-
-        restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
-        restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
-
+        
         Partida[] partidasResultado = restTemplate.getForObject(url, Partida[].class);
         System.out.println("\tId \t\tDestino \t\tFecha \t\tDescripcion \t\tBarco \t\tContenedores \t\tPeso Total");
         for (Partida partida : partidasResultado) {

@@ -42,6 +42,7 @@
                     <form:errors path="*" class="alert alert-dismissable alert-danger" style="padding-bottom: 3px;"/>
                     <fieldset>
                         <legend>Campos Barco</legend>
+                            <form:input type="hidden" path="id" value="${barco.id}"/>
                         <div class="form-group">
                             <form:label for="codigo" path="codigo" class="col-lg-2 control-label">Codigo</form:label>
                             
@@ -65,6 +66,12 @@
                             <form:label for="capacidadTransporte" path="capacidadTransporte" class="col-lg-2 control-label">Capacidad de Transporte</form:label>
                             <div class="col-lg-10">
                             <form:input path="capacidadTransporte" class="form-control" value="${barco.capacidadTransporte}"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <form:label for="cantidadTripulantes" path="cantidadTripulantes" class="col-lg-2 control-label">Cantidad de Tripulantes</form:label>
+                            <div class="col-lg-10">
+                            <form:input path="cantidadTripulantes" class="form-control" value="${barco.cantidadTripulantes}"/>
                             </div>
                         </div>
                         <div class="form-group">

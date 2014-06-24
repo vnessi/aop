@@ -41,7 +41,9 @@ public class ObjectDaoImpl<T> implements ObjetoDao<T> {
     @Override
     public void modificar(T entity) throws GenericException{
         try{
-        hibernateTemplate.merge(entity);
+        entity = (T) hibernateTemplate.get(entity.getClass(), ((EntidadPersistente)entity).getId());
+        
+        hibernateTemplate.save(entity);
         }catch(DataAccessException ex){
             throw new GenericException(ex.getMessage());
         }
@@ -54,7 +56,11 @@ public class ObjectDaoImpl<T> implements ObjetoDao<T> {
 
     @Override
     public T obtenerPorPK(EntidadPersistente obj) throws GenericException {
-       return (T)hibernateTemplate.find("from "+getEntityName()+" where id = "+obj.getId()).get(0);
+       List<T> ret = obtenerPorPropiedad("id",obj.getId().toString());
+       if(ret.size() > 0 ){
+           return ret.get(0);
+       }
+       return null;
     }
 
     @Override

@@ -68,6 +68,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <form:label for="cantidadTripulantes" path="cantidadTripulantes" class="col-lg-2 control-label">Cantidad de Tripulantes</form:label>
+                            <div class="col-lg-10">
+                            <form:input path="cantidadTripulantes" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <form:label for="anioFabricacion" path="anioFabricacion" class="col-lg-2 control-label">Anio de Fabricacion</form:label>
                             <div class="col-lg-10">
                             <form:input path="anioFabricacion" class="form-control"/>

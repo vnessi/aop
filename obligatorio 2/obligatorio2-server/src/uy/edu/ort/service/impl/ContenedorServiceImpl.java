@@ -56,7 +56,7 @@ public class ContenedorServiceImpl implements ContenedorService{
     }
     @Transactional
     @Override
-    public List<Contenedor> listContenedors() throws BussinesException {
+    public List<Contenedor> listContenedores() throws BussinesException {
         try {
             return contenedorDao.obtenerTodos();
         } catch (GenericException ex) {

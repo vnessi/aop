@@ -56,10 +56,10 @@
                         <td>${contenedor.marca}</td>
                         <td>${contenedor.modelo}</td>
                         <td>
-                            <spring:url value="eliminarContenedor/{contenedorId}.htm" var="contenedorUrl">
+                            <spring:url value="eliminarContenedor-{contenedorId}.htm" var="contenedorEliminarUrl">
                                 <spring:param name="contenedorId" value="${contenedor.id}"/>
                             </spring:url>
-                            <a href="${contenedorUrl}">x</a>
+                            <a href="${contenedorEliminarUrl}" style="text-decoration: none">X</a>
                         </td>
                     </tr>
                 </c:forEach>

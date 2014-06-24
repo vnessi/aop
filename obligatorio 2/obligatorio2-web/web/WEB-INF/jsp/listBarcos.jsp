@@ -42,10 +42,10 @@
                         <td>${barco.capacidadTransporte}</td>
                         <td>${barco.anioFabricacion}</td>
                         <td>
-                            <spring:url value="eliminarBarco/{barcoId}.htm" var="barcoUrl">
+                            <spring:url value="eliminarBarco-{barcoId}.htm" var="barcoEliminarUrl">
                                 <spring:param name="barcoId" value="${barco.id}"/>
                             </spring:url>
-                            <a href="${barcoUrl}">x</a>
+                            <a href="${barcoEliminarUrl}" style="text-decoration: none">X</a>
                         </td>
                     </tr>
                 </c:forEach>

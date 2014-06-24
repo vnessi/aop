@@ -16,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import uy.edu.ort.model.Barco;
 import uy.edu.ort.model.Contenedor;
 import uy.edu.ort.service.ContenedorService;
 import uy.edu.ort.service.BussinesException;
@@ -91,5 +92,15 @@ public class ContenedorController {
         return "redirect:listContenedores.htm";
     }
     
+    @RequestMapping(value = "/eliminarContenedor-{contenedorId}", method = RequestMethod.GET)
+    public String eliminar(@PathVariable("contenedorId") Long barcoId, Model model) {
+        try {
+           Contenedor contenedor = contenedorService.obtenerContenedor(barcoId.toString());
+           this.contenedorService.removeContenedor(contenedor);
+        } catch (BussinesException ex) {
+            Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return "redirect:listContenedores.htm";
+    }
     
 }

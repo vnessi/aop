@@ -75,6 +75,7 @@ public class BarcoController {
         } catch (BussinesException ex) {
             Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         model.addAttribute(barco);
         //va a una vista
         return "editBarco";
@@ -83,12 +84,22 @@ public class BarcoController {
     @RequestMapping(value = "/modificarBarco", method = RequestMethod.POST)
     public String modificar(Barco barco, BindingResult result) {
         try {
-            //modificar usuario
             barcoService.modifyBarco(barco);
         } catch (BussinesException ex) {
             Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "redirect:listBarcos.htm";
+    }
+    
+    @RequestMapping(value = "/eliminarBarco-{barcoId}", method = RequestMethod.GET)
+    public String eliminar(@PathVariable("barcoId") Long barcoId, Model model) {
+        try {
+           Barco barco = barcoService.obtenerBarco(barcoId.toString());
+           this.barcoService.removeBarco(barco);
+        } catch (BussinesException ex) {
+            Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return "redirect:listBarcos.htm";
     }
     
     

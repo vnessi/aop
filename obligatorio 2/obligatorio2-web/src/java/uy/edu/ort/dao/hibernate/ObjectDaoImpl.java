@@ -44,6 +44,7 @@ public class ObjectDaoImpl<T> implements ObjetoDao<T> {
         entity = (T) hibernateTemplate.get(entity.getClass(), ((EntidadPersistente)entity).getId());
         
         hibernateTemplate.save(entity);
+        hibernateTemplate.flush();
         }catch(DataAccessException ex){
             throw new GenericException(ex.getMessage());
         }

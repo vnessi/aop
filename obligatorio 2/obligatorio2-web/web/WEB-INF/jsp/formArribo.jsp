@@ -37,7 +37,7 @@
         <div class="page-header">
             <h1>Ingresar Arribo</h1>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <div class="well bs-component">
                 <form:form modelAttribute="arribo" action="agregarArribo.htm" method="post" class="form-horizontal">
                     <form:errors path="*" class="alert alert-dismissable alert-danger" style="padding-bottom: 3px;"/>
@@ -64,61 +64,13 @@
 
                         <div class="bs-component">
                             <h3>Barco</h3>
-                            <table class="table table-striped table-hover ">
 
-                                <thead>
-                                <th>Codigo</th>
-                                <th>Nombre</th>
-                                <th>Bandera</th>
-                                <th>Cantidad de tripulantes</th>
-                                <th>Capacidad de transporte</th>
-                                <th>Anio de Fabricacion</th>
-                                    <c:forEach var="barco" items="${barcos}">
-                                    <tr>              
-                                        <td>${barco.codigo}</td>
-                                        <td>${barco.nombre}</td>
-                                        <td>${barco.bandera}</td>
-                                        <td>${barco.cantidadTripulantes}</td>
-                                        <td>${barco.capacidadTransporte}</td>
-                                        <td>${barco.anioFabricacion}</td>
-                                    </tr>
-                                </c:forEach>
-                            </table>
-                        </div>
-
+                            <form:select path="barco" items="${barcoList}"  />
                         <div class="bs-component">
-                            <h3>Contenedor</h3>
-                            <table class="table table-striped table-hover ">
-
-                                <thead>
-                                <th>Codigo</th>
-                                <th>Capacidad</th>
-                                <th>Marca</th>
-                                <th>Modelo</th>
-                                    <c:forEach var="contenedor" items="${contenedores}">
-                                    <tr>              
-                                        <td>${contenedor.codigo}</td>
-                                        <td>${contenedor.capacidad}</td>
-                                        <td>${contenedor.marca}</td>
-                                        <td>${contenedor.modelo}</td>
-                                    </tr>
-                                </c:forEach>
-                                    
-                            </table>
+                            <h3>Contenedores</h3>
                             
+                            <form:select path="contenedores" items="${contenedorList}" multiple="true" />
                             
-                            <!--http://stackoverflow.com/questions/15480397/how-to-send-list-of-object-to-view-and-back-to-post-method-in-controller-->
-                                    <!--http://developer.ucsd.edu/develop/user-interface/building-a-form/form-binding-with-collections.html-->
-                            <%--<c:forEach items="${contenedores.contenedor}" varStatus="vs">--%>
-                                <%--<c:forEach var="contenedor" items="${contenedores}" varStatus="status">--%>
-                                    <%--<form:input path="contenedor[${status.index}].index" name="FName" id="FName" value="" />--%>
-                                    <%--<form:input path="contenedor[${status.capacidad}].capacidad" name="capacidad" id="capacidad" value="" />--%>
-                                    <%--<form:input path="contenedor[${status.marca}].codigo" name="FName" id="FName" value="" />--%>
-                                    <%--<form:input path="contenedor[${status.modelo}].capacidad" name="LName" id="LName" value="" />--%>
-                                <%--</c:forEach>--%>
-                            <%--</c:forEach>--%>
-
-
                             <div class="col-lg-10">
                                 <div class="form-group">
                                     <div class="col-lg-10 col-lg-offset-2">
@@ -130,8 +82,5 @@
                 </form:form>
             </div>
         </div>
-            <div class="col-lg-6">
-                
-            </div>
 </body>
 </html>

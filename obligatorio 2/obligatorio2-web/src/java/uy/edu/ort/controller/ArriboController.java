@@ -5,7 +5,10 @@
  */
 package uy.edu.ort.controller;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,15 +79,43 @@ public class ArriboController {
              Logger.getLogger(ContenedorController.class.getName()).log(Level.SEVERE, null, ex);
          }
         model.addAttribute("contenedores", contenedors);
+        
+        
+	Map<Contenedor,String> contenedor = new LinkedHashMap<>();
+        for(Contenedor c : contenedors){
+            contenedor.put(c,c.getCodigo());
+        }
+	model.addAttribute("contenedorList", contenedor);
+        
+	Map<Barco,String> barco = new LinkedHashMap<>();
+        for(Barco c : barcos){
+            barco.put(c,c.getCodigo());
+        }
+	model.addAttribute("barcoList", barco);
+        
+        
+        
 
         return "formArribo";
     }
 
     @RequestMapping(value = "/agregarArribo", method = RequestMethod.POST)
     public String agregarArribo(Arribo arribo, BindingResult result) {
-        if (!arribo.getId().equals("")) {
+        if (true) {
             try {
-                this.arriboService.registrarArribo(null, null, null, null, null);;
+                //Barco b = barcoService.obtenerBarco(arribo.getBarco().getId().toString());
+                List<Contenedor> contLst = new ArrayList<>();
+                for(Contenedor c :(List<Contenedor>)arribo.getContenedores()){
+                    System.out.println("=========="+c);
+                    
+                    
+                    
+                    
+                    
+                    Contenedor cont = c;
+                    contLst.add(cont);
+                }
+                this.arriboService.registrarArribo(arribo.getBarco(), contLst, arribo.getDescripcion(), arribo.getOrigen(), arribo.getFecha());
             } catch (BussinesException ex) {
                 Logger.getLogger(ArriboController.class.getName()).log(Level.SEVERE, null, ex);
             }

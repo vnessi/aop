@@ -6,7 +6,6 @@
 
 package uy.edu.ort.fachada;
 
-import com.google.gson.Gson;
 import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -269,7 +268,6 @@ public class FachadaOperaciones {
         RestTemplate restTemplate1 = new RestTemplate();
         restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
         restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
-        Gson gson = new Gson();
         
         String promedios = restTemplate1.getForObject(url, String.class);
         System.out.println("\tOperacion \t\tTiempo");

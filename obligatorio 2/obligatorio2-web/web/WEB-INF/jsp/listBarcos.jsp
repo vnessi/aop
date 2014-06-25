@@ -14,44 +14,44 @@
     </head>
     <body>
         <%@include file="header.jsp" %>
-    <div class="container">
-        <div class="page-header">
-            <h1>Barcos</h1><a href="formBarco.htm" style="float:right;" class="btn btn-primary">Agregar</a>
-        </div>
+        <div class="container">
+            <div class="page-header">
+                <h1>Barcos</h1><a href="formBarco.htm" style="float:right;" class="btn btn-primary">Agregar</a>
+            </div>
 
-        <div class="bs-component">
-            <table class="table table-striped table-hover ">
+            <div class="bs-component">
+                <table class="table table-striped table-hover ">
 
-                <thead>
-                <th>Codigo</th>
-                <th>Nombre</th>
-                <th>Bandera</th>
-                <th>Cantidad de tripulantes</th>
-                <th>Capacidad de transporte</th>
-                <th>Anio de Fabricacion</th>
-                    <c:forEach var="barco" items="${barcos}">
-                    <tr>              
-                        <td>
-                            <spring:url value="editarBarco-{barcoId}.htm" var="barcoUrl">
-                                <spring:param name="barcoId" value="${barco.id}"/>
-                            </spring:url>
-                            <a href="${barcoUrl}">${barco.codigo}</a></td>
-                        <td>${barco.nombre}</td>
-                        <td>${barco.bandera}</td>
-                        <td>${barco.cantidadTripulantes}</td>
-                        <td>${barco.capacidadTransporte}</td>
-                        <td>${barco.anioFabricacion}</td>
-                        <td>
-                            <spring:url value="eliminarBarco-{barcoId}.htm" var="barcoEliminarUrl">
-                                <spring:param name="barcoId" value="${barco.id}"/>
-                            </spring:url>
-                            <a href="${barcoEliminarUrl}" style="text-decoration: none">X</a>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
+                    <thead>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Bandera</th>
+                    <th>Cantidad de tripulantes</th>
+                    <th>Capacidad de transporte</th>
+                    <th>Anio de Fabricacion</th>
+                        <c:forEach var="barco" items="${barcos}">
+                        <tr>              
+                            <td>
+                                <spring:url value="editarBarco-{barcoId}.htm" var="barcoUrl">
+                                    <spring:param name="barcoId" value="${barco.id}"/>
+                                </spring:url>
+                                <a href="${barcoUrl}">${barco.codigo}</a></td>
+                            <td>${barco.nombre}</td>
+                            <td>${barco.bandera}</td>
+                            <td>${barco.cantidadTripulantes}</td>
+                            <td>${barco.capacidadTransporte}</td>
+                            <td>${barco.anioFabricacion}</td>
+                            <td>
+                                <spring:url value="eliminarBarco-{barcoId}.htm" var="barcoEliminarUrl">
+                                    <spring:param name="barcoId" value="${barco.id}"/>
+                                </spring:url>
+                                <a href="${barcoEliminarUrl}" style="text-decoration: none">X</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>

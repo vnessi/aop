@@ -28,6 +28,7 @@
                     <li class="active"><a href="<%=request.getContextPath()%>/contenedor/listContenedores.htm">Contenedores</a></li>
                     <li><a href="<%=request.getContextPath()%>/partida/listPartidas.htm">Partidas</a></li>
                     <li><a href="<%=request.getContextPath()%>/arribo/listArribos.htm">Arribos</a></li>
+                    <li ><a href="<%=request.getContextPath()%>/profiling/listProfiling.htm">Profiling</a></li>
                 </ul>
             </div>
         </div>

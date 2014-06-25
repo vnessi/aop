@@ -9,7 +9,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Agregar Barco</title>
-        <title>Agregar Barco</title>
         <link type="text/css" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css" rel="stylesheet"/>
 
     </head>
@@ -29,6 +28,7 @@
                     <li><a href="<%=request.getContextPath()%>/contenedor/listContenedores.htm">Contenedores</a></li>
                     <li><a href="<%=request.getContextPath()%>/partida/listPartidas.htm">Partidas</a></li>
                     <li class="active"><a href="<%=request.getContextPath()%>/arribo/listArribos.htm">Arribos</a></li>
+                    <li ><a href="<%=request.getContextPath()%>/profiling/listProfiling.htm">Profiling</a></li>
                 </ul>
             </div>
         </div>
@@ -65,11 +65,11 @@
                         <div class="bs-component">
                             <h3>Barco</h3>
 
-                            <form:select path="barco" items="${barcoList}"  />
+                            <form:select path="barcoId" items="${barcoList}"  />
                         <div class="bs-component">
                             <h3>Contenedores</h3>
                             
-                            <form:select path="contenedores" items="${contenedorList}" multiple="true" />
+                            <form:select path="contList" items="${contenedorList}"  />
                             
                             <div class="col-lg-10">
                                 <div class="form-group">

@@ -28,6 +28,7 @@
     <bean id="partidaService" class="uy.edu.ort.service.impl.PartidaServiceImpl" >
         <property name="partidaDao" ref="partidaDao"/>
         <property name="arriboDao" ref="arriboDao"/>
+        <property name="barcoDao" ref="barcoDao"/>
     </bean>
     
     <bean id="barcoService" class="uy.edu.ort.service.impl.BarcoServiceImpl" >

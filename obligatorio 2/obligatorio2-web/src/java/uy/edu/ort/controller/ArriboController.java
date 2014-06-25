@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import uy.edu.ort.model.Arribo;
 import uy.edu.ort.model.Barco;
 import uy.edu.ort.model.Contenedor;
@@ -41,16 +42,46 @@ public class ArriboController {
 
     @Autowired
     private ContenedorService contenedorService;
-
+    
     @RequestMapping(value = "/listArribos", method = RequestMethod.GET)
     public String listArribos(Model model) {
         List<Arribo> arribos = null;
 
         try {
-            arribos = this.arriboService.generarReporteArribosMes(2);
+            arribos = this.arriboService.generarReporteArribosMes(1);
         } catch (BussinesException ex) {
             Logger.getLogger(ArriboController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        model.addAttribute("mes", 1);
+        model.addAttribute("arribos", arribos);
+        return "listArribos";
+    }
+
+    @RequestMapping(value = "/listArribos", method = RequestMethod.GET,params = {"mes"})
+    public String listArribosConMes(@RequestParam("mes") int mes,Model model) {
+        List<Arribo> arribos = null;
+
+        try {
+            arribos = this.arriboService.generarReporteArribosMes(mes);
+        } catch (BussinesException ex) {
+            Logger.getLogger(ArriboController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model.addAttribute("mes", mes);
+        model.addAttribute("arribos", arribos);
+        return "listArribos";
+    }
+    
+    @RequestMapping(value = "/listArribos", method = RequestMethod.GET,params = {"mes","idBarco"})
+    public String listArribosConMesYBarco(@RequestParam("mes") int mes,@RequestParam("idBarco") String idBarco, Model model) {
+        List<Arribo> arribos = null;
+
+        try {
+            arribos = this.arriboService.generarReporteArribosMesBarco(mes, idBarco);
+        } catch (BussinesException ex) {
+            Logger.getLogger(ArriboController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model.addAttribute("mes", mes);
+        model.addAttribute("idBarco", idBarco);
         model.addAttribute("arribos", arribos);
         return "listArribos";
     }
@@ -81,49 +112,42 @@ public class ArriboController {
         model.addAttribute("contenedores", contenedors);
         
         
-	Map<Contenedor,String> contenedor = new LinkedHashMap<>();
+	Map<Long,String> contenedor = new LinkedHashMap<>();
         for(Contenedor c : contenedors){
-            contenedor.put(c,c.getCodigo());
+            contenedor.put(c.getId(),c.getCodigo());
         }
 	model.addAttribute("contenedorList", contenedor);
         
-	Map<Barco,String> barco = new LinkedHashMap<>();
-        for(Barco c : barcos){
-            barco.put(c,c.getCodigo());
+	Map<Long,String> barco = new LinkedHashMap<>();
+        for(Barco barc : barcos){
+            barco.put(barc.getId(),barc.getCodigo());
         }
 	model.addAttribute("barcoList", barco);
         
-        
-        
-
         return "formArribo";
     }
 
     @RequestMapping(value = "/agregarArribo", method = RequestMethod.POST)
-    public String agregarArribo(Arribo arribo, BindingResult result) {
-        if (true) {
+    public String agregarArribo(@RequestParam (value ="barcoId")Long barcoId,@RequestParam (value ="contList")List<Long> contList,Arribo arribo, BindingResult result) {
+        if (arribo.getDescripcion() != null && arribo.getOrigen()!= null && arribo.getFecha()!= null ) {
             try {
-                //Barco b = barcoService.obtenerBarco(arribo.getBarco().getId().toString());
                 List<Contenedor> contLst = new ArrayList<>();
-                for(Contenedor c :(List<Contenedor>)arribo.getContenedores()){
-                    System.out.println("=========="+c);
-                    
-                    
-                    
-                    
-                    
-                    Contenedor cont = c;
+                for(Long c :contList){
+                    Contenedor cont = contenedorService.obtenerContenedor(c.toString());
                     contLst.add(cont);
                 }
-                this.arriboService.registrarArribo(arribo.getBarco(), contLst, arribo.getDescripcion(), arribo.getOrigen(), arribo.getFecha());
+                Barco b = barcoService.obtenerBarco(barcoId.toString());
+                this.arriboService.registrarArribo(b, contLst, arribo.getDescripcion(), arribo.getOrigen(), arribo.getFecha());
             } catch (BussinesException ex) {
                 Logger.getLogger(ArriboController.class.getName()).log(Level.SEVERE, null, ex);
+                result.reject("", ex.getMessage());
+               
+                return "formArribo";
             }
 
-            //return "redirect:list.htm";
-            return "viewArribo";
+            return "redirect:listArribos.htm";
         } else {
-            result.reject("", "El code no puede ser vacio");
+            result.reject("", "Ningun valor puede ser vacio");
             return "formArribo";
         }
     }

@@ -139,6 +139,15 @@ public class MainCliente {
                         System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
                     }
                     break;
+                
+                case "9":
+                    System.out.println(">>Generar Reporte de Trazabilidad: \n");
+                    try {
+                        FachadaOperaciones.listarTrazas();
+                    } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
 
                 case "99":
                     System.out.println(">>Salir");
@@ -173,6 +182,7 @@ public class MainCliente {
         System.out.println(">> 6 -\tReporte arribos por mes y barco");
         System.out.println(">> 7 -\tReporte partidas por mes");
         System.out.println(">> 8 -\tReporte partidas por mes y barco");
+        System.out.println(">> 9 -\tReporte trazabilidad");
         System.out.println(">> 99 -\tSalir del sistema");
     }
 

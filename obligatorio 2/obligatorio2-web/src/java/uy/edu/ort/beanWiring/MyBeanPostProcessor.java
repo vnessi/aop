@@ -9,7 +9,7 @@ package uy.edu.ort.beanWiring;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Logger;
+import org.apache.log4j.Category;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
@@ -20,7 +20,10 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
  * Bean Post Processor para interceptar e imprimir en consola los Beans creados
  */
 public class MyBeanPostProcessor implements BeanPostProcessor {
-
+    
+    static final Category log = Category.getInstance(MyBeanPostProcessor.class);
+    static final String LOG_PROPERTIES_FILE = "Configuracion/Propiedades.properties";
+    
     @Override
     public Object postProcessBeforeInitialization(Object o, String string) throws BeansException {
         return o;
@@ -30,9 +33,8 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object o, String string) throws BeansException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
-        Logger logger = Logger.getLogger(MyBeanPostProcessor.class.getName());
-        logger.info(dateFormat.format(date) + " ::::::::: Nombre Bean: " + string + " ::::::::: Clase: "+ o.getClass().getName());
-        System.out.println("Bean Name: " + string+ " Class: "+ o.getClass().getName());
+        //LogUtil.getLogFile().info(dateFormat.format(date) + " ::::::::: Nombre Bean: " + string + " ::::::::: Clase: "+ o.getClass().getName());
+        log.info(dateFormat.format(date) + " ::::::::: Nombre Bean: " + string + " ::::::::: Clase: "+ o.getClass().getName());
         return o;
     }
     

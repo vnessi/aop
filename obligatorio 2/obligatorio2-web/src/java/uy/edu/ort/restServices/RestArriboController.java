@@ -24,7 +24,7 @@ import uy.edu.ort.service.BussinesException;
 
 /**
  *
- * @author victor
+ * @author Victor Nessi - Bruno Montaner
  */
 @Controller
 @RequestMapping(value = "/rest/arribo")

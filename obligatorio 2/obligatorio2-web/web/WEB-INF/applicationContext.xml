@@ -43,6 +43,10 @@
         <property name="reporteEjecucionDao" ref="reporteEjecucionDao"/>
     </bean>
     
+    <bean id="traceService" class="uy.edu.ort.service.impl.TraceServiceImpl" >
+        <property name="traceDao" ref="traceDao"/>
+    </bean>
+    
     <bean id="arriboDao" class="uy.edu.ort.dao.hibernate.ArriboDaoImpl">
         <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
@@ -62,7 +66,7 @@
     <bean id="reporteEjecucionDao" class="uy.edu.ort.dao.hibernate.ReporteEjecucionDaoImpl">
         <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
-
+    
     <bean id="myBeanPostProcessor" class="uy.edu.ort.beanWiring.MyBeanPostProcessor"></bean>
     
     <!-- Hibernate Template -->
@@ -94,11 +98,30 @@
     
     <aop:config>
         <aop:aspect id="myTraceAspect" ref="traceAspect" >
-            <aop:pointcut id="allDaoPC" expression="execution( void uy.edu.ort.*.*.*(..) )" />
+            <aop:pointcut id="allDaoPC" expression="execution( * uy.edu.ort.service.*.*(..) )" />
             <aop:after-returning pointcut-ref="allDaoPC" method="trace" />
         </aop:aspect>
      </aop:config>
+     
+     <bean id="traceAspect" class="uy.edu.ort.aop.TraceAspect">
+         <property name="traceDao" ref="traceDao"/>
+     </bean>
+     
+     <bean id="traceDao" class="uy.edu.ort.dao.hibernate.TraceDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>
     
-    <bean id="traceAspect" class="uy.edu.ort.aop.TraceAspect" />
+    
+     
+     
+        
+<!--    
+    <bean id="traceAspect" class="uy.edu.ort.aop.TraceAspect">
+        <property name="traceDao" ref="traceDao"/>
+    </bean>
+    
+    <bean id="traceDao" class="uy.edu.ort.dao.hibernate.TraceDaoImpl">
+        <property name="hibernateTemplate" ref="hibernateTemplate"/>
+    </bean>-->
 
 </beans>

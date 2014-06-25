@@ -14,6 +14,7 @@ import uy.edu.ort.model.Arribo;
 import uy.edu.ort.model.Barco;
 import uy.edu.ort.model.Contenedor;
 import uy.edu.ort.model.Partida;
+import uy.edu.ort.model.Trace;
 import uy.edu.ort.propiedades.ManejoPropiedades;
 
 /**
@@ -170,6 +171,23 @@ public class FachadaOperaciones {
                 " \t\t" + partida.getBarco().getCodigo() + " \t\t" + codigoConts + " \t\t" + peso);
 
 
+        }
+    }
+    
+    public static void listarTrazas() {
+        String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "resttrace/all.htm";
+        Trace[] trazas= null;
+        try {   
+            trazas = restTemplate.getForObject(url, Trace[].class);
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace().toString());
+        }
+        
+        
+        System.out.println("\tFecha \t\tDescripcion");
+        for (Trace t : trazas) {
+            String fechaString = new SimpleDateFormat("dd-MM-yyyy").format(t.getFecha());
+            System.out.println("\t" + fechaString + "\t\t" + t.getDescripcion());
         }
     }
 }

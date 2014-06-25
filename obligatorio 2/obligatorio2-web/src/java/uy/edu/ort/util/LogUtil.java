@@ -21,16 +21,16 @@ public class LogUtil {
     
     public static Logger getLogFile() {
         if(LOGGER == null) {
-            //try {
+            try {
                 LOGGER = Logger.getLogger("");
-                /*FileHandler fhandler = new FileHandler(ManejoPropiedades.obtenerInstancia().obtenerPropiedad("Log"));
+                FileHandler fhandler = new FileHandler(ManejoPropiedades.obtenerInstancia().obtenerPropiedad("log"));
                 SimpleFormatter sformatter = new SimpleFormatter();
                 fhandler.setFormatter(sformatter);
                 LOGGER.addHandler(fhandler);
             } catch (IOException ex) {
                 Logger.getLogger(GenericException.class.getName()).log(Level.SEVERE, null, ex);
             }
-         */               
+                    
         }
         return LOGGER;
     }

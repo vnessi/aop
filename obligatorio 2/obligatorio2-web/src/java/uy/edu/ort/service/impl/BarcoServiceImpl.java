@@ -69,6 +69,7 @@ public class BarcoServiceImpl implements BarcoService {
             throw new BussinesException("Error al acceder la Base de Datos");
         } catch (Exception ex) {
             Logger.getLogger(BarcoServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            throw new BussinesException(ex.getMessage());
         }
     }
 

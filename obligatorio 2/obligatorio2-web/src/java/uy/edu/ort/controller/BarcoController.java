@@ -87,8 +87,8 @@ public class BarcoController {
     public String modificar(@RequestParam("id") long id, Barco barco, BindingResult result) {
         try {
             barcoService.modifyBarco(id, barco);
-        } catch (BussinesException ex) {
-            Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            //Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
             result.reject("", ex.getMessage());
             return "editBarco";
         }

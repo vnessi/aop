@@ -12,6 +12,7 @@ import uy.edu.ort.model.Partida;
 import uy.edu.ort.pdf.PdfUtil;
 import uy.edu.ort.service.ArriboService;
 import uy.edu.ort.service.PartidaService;
+import uy.edu.ort.service.ProfilingService;
 
 /**
  *
@@ -26,6 +27,9 @@ public class ReporteController {
     
     @Autowired
     PartidaService partidaService;
+    
+    @Autowired
+    ProfilingService profilingService;
     
     @RequestMapping(value = "/arribos", method = RequestMethod.GET, produces = "application/pdf", params = { "mes" })
     public void arribos(@RequestParam("mes") int mes, OutputStream response) {
@@ -59,6 +63,17 @@ public class ReporteController {
         try {
             List<Partida> partidas = partidaService.generarReportePartidasMesBarco(mes, idBarco);
             PdfUtil.crearReportePartidasPDFMesBarco(partidas, String.valueOf(mes), idBarco, response);
+        } catch (Exception ex) {
+        }
+    }
+    
+    @RequestMapping(value = "/profiling", method = RequestMethod.GET, produces = "application/pdf")
+    public void partidas(OutputStream response) {
+        try {
+            List<String> masRapido = profilingService.servicioMasRapido();
+            List<String> masLento = profilingService.servicioMasLento();
+            List<List<String>> promedios = profilingService.promedioEjecucionServicio();
+            PdfUtil.crearReportePDFProfiling(masRapido, masLento, promedios, response);
         } catch (Exception ex) {
         }
     }

@@ -92,14 +92,10 @@ public class PdfUtil {
         }
     }
     
-    public static void crearReportePDFProfiling(List<String> masRapido, List<String> masLento, List<List<String>> promedios) {
+    public static void crearReportePDFProfiling(List<String> masRapido, List<String> masLento, List<List<String>> promedios, OutputStream response) {
         try {
             Document document = new Document();
-            try {
-                PdfWriter.getInstance((com.itextpdf.text.Document) document, new FileOutputStream(DIR + FILEPROFILING));
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(PdfUtil.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            PdfWriter.getInstance((com.itextpdf.text.Document) document, response);
             document.open();
             document.add(new Paragraph(" Reporte de Profiling "));
             document.add(new Paragraph("\n\n\n"));

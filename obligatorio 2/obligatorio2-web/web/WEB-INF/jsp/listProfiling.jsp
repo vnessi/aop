@@ -75,13 +75,8 @@
             </c:forEach>
             
         </div>
-        <c:if test="${empty requestScope.idBarco}">
-            <a target="_blank" href="<%=request.getContextPath()%>/reporte/arribos.htm?mes=${requestScope.mes}" class="btn btn-info">Generar Reporte</a>
-        </c:if>
-
-        <c:if test="${not empty requestScope.idBarco}">
-            <a target="_blank" href="<%=request.getContextPath()%>/reporte/arribos.htm?mes=${requestScope.mes}&idBarco=${requestScope.idBarco}" class="btn btn-info">Generar Reporte</a>
-        </c:if>
+        <a target="_blank" href="<%=request.getContextPath()%>/reporte/profiling.htm" class="btn btn-info">Generar Reporte</a>
+            
     </div>
 </div>
 </body>

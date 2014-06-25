@@ -22,7 +22,7 @@ public class TraceAspect {
     final static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(TraceAspect.class.getName());
     public static String userName = "defaultUser";
     
-    public void trace(JoinPoint joinPoint) {
+    public void trace(JoinPoint joinPoint) throws Exception{
         try {
             Trace t = new Trace();
             t.setFecha(new Date());
@@ -32,7 +32,7 @@ public class TraceAspect {
             
             logger.info("usuario: "+ userName +" [ejecuto metodo " + joinPoint.getSignature() +"]");
         } catch (Exception ex) {
-            Logger.getLogger(TraceAspect.class.getName()).log(Level.SEVERE, null, ex);
+            throw ex;
         }
     }
 }

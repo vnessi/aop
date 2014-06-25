@@ -111,18 +111,5 @@
      <bean id="traceDao" class="uy.edu.ort.dao.hibernate.TraceDaoImpl">
         <property name="hibernateTemplate" ref="hibernateTemplate"/>
     </bean>
-    
-    
-     
-     
-        
-<!--    
-    <bean id="traceAspect" class="uy.edu.ort.aop.TraceAspect">
-        <property name="traceDao" ref="traceDao"/>
-    </bean>
-    
-    <bean id="traceDao" class="uy.edu.ort.dao.hibernate.TraceDaoImpl">
-        <property name="hibernateTemplate" ref="hibernateTemplate"/>
-    </bean>-->
 
 </beans>

@@ -6,9 +6,12 @@
 
 package uy.edu.ort.fachada;
 
+import com.google.gson.Gson;
 import java.text.SimpleDateFormat;
 import java.util.LinkedHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import uy.edu.ort.model.Arribo;
 import uy.edu.ort.model.Barco;
@@ -34,7 +37,11 @@ public class FachadaOperaciones {
     public static void mostrarContenedor(String codigo) {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restcontenedor/" + codigo + ".htm";
         
-        Contenedor c = restTemplate.getForObject(url, Contenedor.class);
+        RestTemplate restTemplate1 = new RestTemplate();
+        restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+        
+        Contenedor c = restTemplate1.getForObject(url, Contenedor.class);
             System.out.println("\tId \t\tCodigo \t\tMarca \t\tModelo \t\tCapacidad(kgs)");
             System.out.println("\t" + String.valueOf(c.getId()) + "\t\t" + c.getCodigo() 
                     + " \t\t" + c.getMarca()+ " \t\t" + c.getModelo()  
@@ -45,7 +52,12 @@ public class FachadaOperaciones {
     public static void listarContenedores() {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restcontenedor/contenedores.htm";
         
-        Contenedor[] contenedores = restTemplate.getForObject(url, Contenedor[].class);
+        RestTemplate restTemplate1 = new RestTemplate();
+        restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+        
+        
+        Contenedor[] contenedores = restTemplate1.getForObject(url, Contenedor[].class);
         System.out.println("\tId \t\tCodigo \t\tMarca \t\tModelo \t\tCapacidad(kgs)");
         for (Contenedor c : contenedores) {
             System.out.println("\t" + c.getId() + "\t\t" + c.getCodigo() +
@@ -61,7 +73,11 @@ public class FachadaOperaciones {
     public static void mostrarBarco(String codigo) {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restbarco/" + codigo + ".htm";
         
-        Barco barco = restTemplate.getForObject(url, Barco.class);
+        RestTemplate restTemplate1 = new RestTemplate();
+        restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+        
+        Barco barco = restTemplate1.getForObject(url, Barco.class);
         System.out.println("\tId \t\tCodigo \t\tNombre \t\tBandera \t\tCapacidad(kgs) \t\tAño \t\tCantidadTripulantes");
         System.out.println("\t" + barco.getId() + "\t\t" + barco.getCodigo()
                 + " \t\t" + barco.getNombre() + " \t\t" + barco.getBandera()
@@ -73,7 +89,12 @@ public class FachadaOperaciones {
     public static void listarBarcos() {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restbarco/barcos.htm";
         
-        Barco[] barcos = restTemplate.getForObject(url, Barco[].class);
+        RestTemplate restTemplate1 = new RestTemplate();
+        restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+        
+        
+        Barco[] barcos = restTemplate1.getForObject(url, Barco[].class);
         System.out.println("\tId \t\tCodigo \t\tNombre \t\tBandera \t\tCapacidad(kgs) \t\tAño \t\tCantidadTripulantes");
         for (Barco barco : barcos) {
             System.out.println("\t" + barco.getId() + "\t\t" + barco.getCodigo()
@@ -90,7 +111,11 @@ public class FachadaOperaciones {
     public static void generarReporteArribosMes(String mes) {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restarribo/arribos.htm?mes=" + mes;
         
-        Arribo[] arribosResultado = restTemplate.getForObject(url, Arribo[].class);
+        RestTemplate restTemplate1 = new RestTemplate();
+        restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+        
+        Arribo[] arribosResultado = restTemplate1.getForObject(url, Arribo[].class);
         System.out.println("\tId \t\tOrigen \t\tFecha \t\tDescripcion \t\tBarco \t\tContenedores");
         for (Arribo arribo : arribosResultado) {
             String fechaString = new SimpleDateFormat("dd-MM-yyyy").format(arribo.getFecha());
@@ -109,7 +134,11 @@ public class FachadaOperaciones {
     public static void generarReporteArribosMesBarco(String mes, String idBarco) {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restarribo/arribos.htm?mes=" + mes + "&idBarco=" + idBarco;
         
-        Arribo[] arribosResultado = restTemplate.getForObject(url, Arribo[].class);
+        RestTemplate restTemplate1 = new RestTemplate();
+        restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+        
+        Arribo[] arribosResultado = restTemplate1.getForObject(url, Arribo[].class);
         System.out.println("\tId \t\tOrigen \t\tFecha \t\tDescripcion \t\tBarco \t\tContenedores \t\tPeso Total");
         for (Arribo arribo : arribosResultado) {
             String fechaString = new SimpleDateFormat("dd-MM-yyyy").format(arribo.getFecha());
@@ -135,7 +164,12 @@ public class FachadaOperaciones {
     public static void generarReportePartidasMes(String mes) {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restpartida/partidas.htm?mes=" + mes;
         
-        Partida[] partidasResultado = restTemplate.getForObject(url, Partida[].class);
+        RestTemplate restTemplate1 = new RestTemplate();
+        restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+        
+        
+        Partida[] partidasResultado = restTemplate1.getForObject(url, Partida[].class);
         System.out.println("\tId \t\tDestino \t\tFecha \t\tDescripcion \t\tBarco \t\tContenedores");
         for (Partida partida : partidasResultado) {
             String fechaString = new SimpleDateFormat("dd-MM-yyyy").format(partida.getFecha());
@@ -154,7 +188,12 @@ public class FachadaOperaciones {
     public static void generarReportePartidasMesBarco(String mes, String idBarco) {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restpartida/partidas.htm?mes=" + mes + "&idBarco=" + idBarco;
         
-        Partida[] partidasResultado = restTemplate.getForObject(url, Partida[].class);
+        RestTemplate restTemplate1 = new RestTemplate();
+        restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+        
+        
+        Partida[] partidasResultado = restTemplate1.getForObject(url, Partida[].class);
         System.out.println("\tId \t\tDestino \t\tFecha \t\tDescripcion \t\tBarco \t\tContenedores \t\tPeso Total");
         for (Partida partida : partidasResultado) {
             String fechaString = new SimpleDateFormat("dd-MM-yyyy").format(partida.getFecha());
@@ -176,9 +215,14 @@ public class FachadaOperaciones {
     
     public static void listarTrazas() {
         String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "resttrace/all.htm";
+        
+        RestTemplate restTemplate1 = new RestTemplate();
+        restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+        
         Trace[] trazas= null;
         try {   
-            trazas = restTemplate.getForObject(url, Trace[].class);
+            trazas = restTemplate1.getForObject(url, Trace[].class);
         } catch (Exception e) {
             System.out.println(e.getStackTrace().toString());
         }
@@ -189,5 +233,53 @@ public class FachadaOperaciones {
             String fechaString = new SimpleDateFormat("dd-MM-yyyy").format(t.getFecha());
             System.out.println("\t" + fechaString + "\t\t" + t.getDescripcion());
         }
+    }
+    
+    public static void profilingMasLento() {
+        String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restprofiling/lento.htm";
+        
+        RestTemplate restTemplate1 = new RestTemplate();
+        restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+        
+        String[] lento = restTemplate1.getForObject(url, String[].class);
+        
+        System.out.println("\tOperacion \t\tTiempo");
+        System.out.println("\t" + lento[0] + "\t\t" + lento[1]);
+        
+    }
+    
+    public static void profilingMasRapido() {
+        String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restprofiling/rapido.htm";
+        
+        RestTemplate restTemplate1 = new RestTemplate();
+        restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+        
+        String[] rapido = restTemplate1.getForObject(url, String[].class);
+        
+        System.out.println("\tOperacion \t\tTiempo");
+        System.out.println("\t" + rapido[0] + "\t\t" + rapido[1]);
+        
+    }
+    
+    public static void profilingPromedios() {
+        String url = ManejoPropiedades.obtenerInstancia().obtenerPropiedad("restService") + "restprofiling/promedios.htm";
+        
+        RestTemplate restTemplate1 = new RestTemplate();
+        restTemplate1.getMessageConverters().add(new StringHttpMessageConverter());
+        restTemplate1.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+        Gson gson = new Gson();
+        
+        String promedios = restTemplate1.getForObject(url, String.class);
+        System.out.println("\tOperacion \t\tTiempo");
+        String[] ss = promedios.split("]");
+        for(int i=0; i<ss.length; i++) {
+            
+            System.out.println("\t" + ss[i].replace("[", ""));
+        }
+        
+        
+        
     }
 }

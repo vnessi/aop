@@ -149,6 +149,32 @@ public class MainCliente {
                     }
                     break;
 
+                case "10":
+                    System.out.println(">>Generar Reporte de Profiling: Operacion mas rapida \n");
+                    try {
+                        FachadaOperaciones.profilingMasRapido();
+                    } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
+                
+                case "11":
+                    System.out.println(">>Generar Reporte de Profiling: Operacion mas lenta \n");
+                    try {
+                        FachadaOperaciones.profilingMasLento();
+                    } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
+                
+                case "12":
+                    System.out.println(">>Generar Reporte de Profiling: Promedio de tiempo de operaciones \n");
+                    try {
+                        FachadaOperaciones.profilingPromedios();
+                    } catch (Exception ex) {
+                        System.out.println("Lo siento a ocurrido un error, Error: " + ex.getMessage());
+                    }
+                    break;
                 case "99":
                     System.out.println(">>Salir");
                     noSalir = false;
@@ -183,6 +209,9 @@ public class MainCliente {
         System.out.println(">> 7 -\tReporte partidas por mes");
         System.out.println(">> 8 -\tReporte partidas por mes y barco");
         System.out.println(">> 9 -\tReporte trazabilidad");
+        System.out.println(">> 10 -\tProfiling: Operacion mas rapida");
+        System.out.println(">> 11 -\tProfiling: Operacion mas lenta");
+        System.out.println(">> 12 -\tProfiling: Promedio de tiempos");
         System.out.println(">> 99 -\tSalir del sistema");
     }
 

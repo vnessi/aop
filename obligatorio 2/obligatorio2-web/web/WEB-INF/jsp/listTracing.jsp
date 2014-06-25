@@ -28,8 +28,8 @@
                     <li><a href="<%=request.getContextPath()%>/contenedor/listContenedores.htm">Contenedores</a></li>
                     <li><a href="<%=request.getContextPath()%>/partida/listPartidas.htm">Partidas</a></li>
                     <li><a href="<%=request.getContextPath()%>/arribo/listArribos.htm">Arribos</a></li>
-                     <li class="active"><a href="<%=request.getContextPath()%>/profiling/listProfiling.htm">Profiling</a></li>
-                     <li ><a href="<%=request.getContextPath()%>/tracing/listTracing.htm">Tracing</a></li>
+                     <li><a href="<%=request.getContextPath()%>/profiling/listProfiling.htm">Profiling</a></li>
+                     <li class="active"><a href="<%=request.getContextPath()%>/tracing/listTracing.htm">Tracing</a></li>
                 </ul>
             </div>
         </div>
@@ -37,46 +37,25 @@
     <div class="container">
 
         <div class="page-header">
-            <h1>Profiling</h1>
+            <h1>Tracing</h1>
             
-            <h2>Mas Rapido</h2>
             <div class="bs-component">
             <table class="table table-striped table-hover ">
 
                 <thead>
-                <th>Servicio</th>
-                <th>tiempo</th>
+                <th>Fecha</th>
+                <th>Descripcion</th>
                 </thead>
+                
+            <c:forEach var="trace" items="${traces}">
                 <tr>
-            <c:forEach var="rapido" items="${masRapido}">
-                <td>${rapido}</td>
+                <td>${trace.fecha}</td>
+                <td>${trace.descripcion}</td>
+                 </tr>
             </c:forEach>
-                </tr>
+               
             </table>
-            
-            
-            <h2>Mas Lento</h2>
-             <div class="bs-component">
-            <table class="table table-striped table-hover ">
-
-                <thead>
-                <th>Servicio</th>
-                <th>tiempo</th>
-                </thead>
-                <tr>
-            <c:forEach var="lento" items="${masLento}">
-                <td>${lento} </td>
-            </c:forEach>
-             </tr>
-            </table>
-            
-            <h2>Promedios</h2>
-            <c:forEach var="promedio" items="${promedios}">
-                ${promedio} <br />
-            </c:forEach>
-            
         </div>
-        <a target="_blank" href="<%=request.getContextPath()%>/reporte/profiling.htm" class="btn btn-info">Generar Reporte</a>
             
     </div>
 </div>

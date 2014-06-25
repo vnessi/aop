@@ -15,6 +15,7 @@
             <li><a href="<%=request.getContextPath()%>/arribo/listArribos.htm">Arribos</a></li>
             <li><a href="<%=request.getContextPath()%>/reporte/reporte.htm">Reportes</a></li>
             <li ><a href="<%=request.getContextPath()%>/profiling/listProfiling.htm">Profiling</a></li>
+            <li ><a href="<%=request.getContextPath()%>/tracing/listTracing.htm">Tracing</a></li>
         </ul>
     </div>
 </div>

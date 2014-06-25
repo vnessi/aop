@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package uy.edu.ort.controller;
 
 import java.util.List;
@@ -28,57 +27,59 @@ import uy.edu.ort.service.BussinesException;
 @Controller
 @RequestMapping(value = "/barco")
 public class BarcoController {
-    
+
     @Autowired
     private BarcoService barcoService;
 
     @RequestMapping(value = "/listBarcos", method = RequestMethod.GET)
     public String listBarcos(Model model) {
         List<Barco> barcos = null;
-        
-         try {
-             barcos = this.barcoService.listBarcos();
-         } catch (BussinesException ex) {
-             Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
-         }
+
+        try {
+            barcos = this.barcoService.listBarcos();
+        } catch (BussinesException ex) {
+            Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         model.addAttribute("barcos", barcos);
         return "listBarcos";
     }
-    
+
     @RequestMapping(value = "/formBarco", method = RequestMethod.GET)
     public String barcoForm(Model model) {
         Barco b = new Barco();
         model.addAttribute(b);
         return "formBarco";
     }
-    
+
     @RequestMapping(value = "/agregarBarco", method = RequestMethod.POST)
     public String agregarBarco(Barco barco, BindingResult result) {
         if (!barco.getCodigo().equals("") && !barco.getNombre().equals("") && !barco.getBandera().equals("")) {
             try {
                 this.barcoService.addBarco(barco);
-            } catch (BussinesException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
+                result.reject("", ex.getMessage());
+                return "formBarco";
             }
-            
+
             return "redirect:listBarcos.htm";
         } else {
             result.reject("", "Hay un error en los campos ingresados");
             return "formBarco";
         }
     }
-    
+
     @RequestMapping(value = "/editarBarco-{barcoId}", method = RequestMethod.GET)
     public String editar(@PathVariable("barcoId") Long barcoId, Model model) {
-        Barco barco=null;
+        Barco barco = null;
         try {
             barco = this.barcoService.obtenerBarco(barcoId.toString());
         } catch (BussinesException ex) {
             Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
-        
+
         model.addAttribute(barco);
-        //va a una vista
         return "editBarco";
     }
 
@@ -88,20 +89,21 @@ public class BarcoController {
             barcoService.modifyBarco(id, barco);
         } catch (BussinesException ex) {
             Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
+            result.reject("", ex.getMessage());
+            return "editBarco";
         }
         return "redirect:listBarcos.htm";
     }
-    
+
     @RequestMapping(value = "/eliminarBarco-{barcoId}", method = RequestMethod.GET)
     public String eliminar(@PathVariable("barcoId") Long barcoId, Model model) {
         try {
-           Barco barco = barcoService.obtenerBarco(barcoId.toString());
-           this.barcoService.removeBarco(barco);
+            Barco barco = barcoService.obtenerBarco(barcoId.toString());
+            this.barcoService.removeBarco(barco);
         } catch (BussinesException ex) {
             Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       return "redirect:listBarcos.htm";
+        return "redirect:listBarcos.htm";
     }
-    
-    
+
 }

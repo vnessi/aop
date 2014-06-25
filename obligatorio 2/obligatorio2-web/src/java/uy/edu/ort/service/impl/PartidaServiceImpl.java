@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.transaction.annotation.Transactional;
 import uy.edu.ort.dao.ArriboDao;
+import uy.edu.ort.dao.BarcoDao;
 import uy.edu.ort.dao.DaoException;
 import uy.edu.ort.dao.PartidaDao;
 import uy.edu.ort.exception.GenericException;
@@ -25,6 +26,7 @@ public class PartidaServiceImpl implements PartidaService {
     
     public PartidaDao partidaDAO;
     public ArriboDao arriboDAO;
+    public BarcoDao barcoDAO;
     
     public void setPartidaDao(PartidaDao p){
         this.partidaDAO = p;
@@ -33,11 +35,14 @@ public class PartidaServiceImpl implements PartidaService {
     public void setArriboDao(ArriboDao a){
         this.arriboDAO = a;
     }
+    
+    public void setBarcoDao(BarcoDao b){
+        this.barcoDAO = b;
+    }
 
     @Transactional
     @Override
     public void registrarPartida(Barco b, List<Contenedor> contLst, String descripcion, String destino, Date fecha) throws BussinesException {
-        int pesoContenedores = 0;
 
         //Un Contenedor no puede partir en diferentes barcos el mismo día.
         List<Contenedor> contInDB = null;
@@ -63,15 +68,14 @@ public class PartidaServiceImpl implements PartidaService {
             Logger.getLogger(PartidaServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
             throw new BussinesException("Error al acceder la Base de Datos");
         }
-
-        Partida p = new Partida();
-        p.setBarco(b);
-        p.setContenedores(contLst);
-        p.setFecha(fecha);
-        p.setDestino(destino);
-        p.setDescripcion(descripcion);
-
         try {
+            Partida p = new Partida();
+            p.setBarco(b);
+            p.setContenedores(contLst);
+            p.setFecha(fecha);
+            p.setDestino(destino);
+            p.setDescripcion(descripcion);
+        
             partidaDAO.guardar(p);
         } catch (GenericException ex) {
             Logger.getLogger(PartidaServiceImpl.class.getName()).log(Level.SEVERE, null, ex);

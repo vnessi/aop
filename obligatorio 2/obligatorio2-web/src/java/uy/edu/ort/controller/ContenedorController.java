@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package uy.edu.ort.controller;
 
 import java.util.List;
@@ -29,30 +28,30 @@ import uy.edu.ort.service.BussinesException;
 @Controller
 @RequestMapping(value = "/contenedor")
 public class ContenedorController {
-    
+
     @Autowired
     private ContenedorService contenedorService;
 
     @RequestMapping(value = "/listContenedores", method = RequestMethod.GET)
     public String listContenedors(Model model) {
         List<Contenedor> contenedors = null;
-        
-         try {
-             contenedors = this.contenedorService.listContenedores();
-         } catch (BussinesException ex) {
-             Logger.getLogger(ContenedorController.class.getName()).log(Level.SEVERE, null, ex);
-         }
+
+        try {
+            contenedors = this.contenedorService.listContenedores();
+        } catch (BussinesException ex) {
+            Logger.getLogger(ContenedorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         model.addAttribute("contenedores", contenedors);
         return "listContenedores";
     }
-    
+
     @RequestMapping(value = "/formContenedor", method = RequestMethod.GET)
     public String contenedorForm(Model model) {
         Contenedor b = new Contenedor();
         model.addAttribute(b);
         return "formContenedor";
     }
-    
+
     @RequestMapping(value = "/agregarContenedor", method = RequestMethod.POST)
     public String agregarContenedor(Contenedor contenedor, BindingResult result) {
         if (!contenedor.getCodigo().equals("") && !contenedor.getMarca().equals("") && !contenedor.getModelo().equals("")) {
@@ -60,18 +59,20 @@ public class ContenedorController {
                 this.contenedorService.addContenedor(contenedor);
             } catch (BussinesException ex) {
                 Logger.getLogger(ContenedorController.class.getName()).log(Level.SEVERE, null, ex);
+                result.reject("", ex.getMessage());
+                return "formContenedor";
             }
-            
+
             return "redirect:listContenedores.htm";
         } else {
             result.reject("", "Hay un error en los campos ingresados");
             return "formContenedor";
         }
     }
-    
+
     @RequestMapping(value = "/editarContenedor-{contenedorId}", method = RequestMethod.GET)
     public String editar(@PathVariable("contenedorId") Long contenedorId, Model model) {
-        Contenedor contenedor=null;
+        Contenedor contenedor = null;
         try {
             contenedor = this.contenedorService.obtenerContenedor(contenedorId.toString());
         } catch (BussinesException ex) {
@@ -89,19 +90,21 @@ public class ContenedorController {
             contenedorService.modifyContenedor(id, contenedor);
         } catch (BussinesException ex) {
             Logger.getLogger(ContenedorController.class.getName()).log(Level.SEVERE, null, ex);
+            result.reject("", ex.getMessage());
+            return "editContenedor";
         }
         return "redirect:listContenedores.htm";
     }
-    
+
     @RequestMapping(value = "/eliminarContenedor-{contenedorId}", method = RequestMethod.GET)
     public String eliminar(@PathVariable("contenedorId") Long barcoId, Model model) {
         try {
-           Contenedor contenedor = contenedorService.obtenerContenedor(barcoId.toString());
-           this.contenedorService.removeContenedor(contenedor);
+            Contenedor contenedor = contenedorService.obtenerContenedor(barcoId.toString());
+            this.contenedorService.removeContenedor(contenedor);
         } catch (BussinesException ex) {
             Logger.getLogger(BarcoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       return "redirect:listContenedores.htm";
+        return "redirect:listContenedores.htm";
     }
-    
+
 }
